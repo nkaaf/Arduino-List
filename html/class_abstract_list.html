@@ -92,7 +92,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a071af49ccdd54f39ba37eeb7ecd1cb08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the entry at the given index.  <a href="#a071af49ccdd54f39ba37eeb7ecd1cb08">More...</a><br /></td></tr>
 <tr class="separator:a071af49ccdd54f39ba37eeb7ecd1cb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac309f665b1b19a28b3c4fb1121452f50"><td class="memItemLeft" align="right" valign="top">virtual T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50">get</a> (int index)=0</td></tr>
-<tr class="memdesc:ac309f665b1b19a28b3c4fb1121452f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the entry at the given index.  <a href="#ac309f665b1b19a28b3c4fb1121452f50">More...</a><br /></td></tr>
+<tr class="memdesc:ac309f665b1b19a28b3c4fb1121452f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the entry at the given index. If the given index does not exists in the list or the list is immutable, null will be returned.  <a href="#ac309f665b1b19a28b3c4fb1121452f50">More...</a><br /></td></tr>
 <tr class="separator:ac309f665b1b19a28b3c4fb1121452f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44f4ca8f0545252e079a078c87699db2"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#a44f4ca8f0545252e079a078c87699db2">getValue</a> (int index)</td></tr>
 <tr class="memdesc:a44f4ca8f0545252e079a078c87699db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the plain value at the given index.  <a href="#a44f4ca8f0545252e079a078c87699db2">More...</a><br /></td></tr>
@@ -358,7 +358,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Get a pointer to the entry at the given index. </p>
+<p>Get a pointer to the entry at the given index. If the given index does not exists in the list or the list is immutable, null will be returned. </p>
 <dl class="section note"><dt>Note</dt><dd>If you only want to get the value, use <a class="el" href="class_abstract_list.html#a44f4ca8f0545252e079a078c87699db2" title="Get the plain value at the given index. ">getValue()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -399,7 +399,9 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Get the plain value at the given index. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. ">get()</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Be safe, that the given index exists and the list is mutable, otherwise the program will crash here! </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. If the given index does not exists in the list or the ...">get()</a> </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Rewrite this to let the program not crash!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>Index of element to get. </td></tr>
@@ -792,7 +794,7 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Get a pointer to the entry at the given index. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. ">get()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. If the given index does not exists in the list or the ...">get()</a> </dd>
 <dd>
 <a class="el" href="class_abstract_list.html#a44f4ca8f0545252e079a078c87699db2" title="Get the plain value at the given index. ">getValue()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
