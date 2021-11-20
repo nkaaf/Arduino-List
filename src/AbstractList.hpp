@@ -89,7 +89,9 @@ public:
   virtual void remove(int index) = 0;
 
   /*!
-   * @brief Get a pointer to the entry at the given index.
+   * @brief Get a pointer to the entry at the given index. If the given index
+   * does not exists in the list or the list is immutable, null will be
+   * returned.
    * @note  If you only want to get the value, use getValue().
    *
    * @param index   Index of the element to get.
@@ -99,7 +101,10 @@ public:
 
   /*!
    * @brief Get the plain value at the given index.
+   * @note  Be safe, that the given index exists and the list is mutable,
+   * otherwise the program will crash here!
    * @see   get()
+   * @todo  Rewrite this to let the program not crash!
    *
    * @param index   Index of element to get.
    * @return    Value.

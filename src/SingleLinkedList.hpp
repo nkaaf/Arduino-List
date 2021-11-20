@@ -209,7 +209,7 @@ public:
   }
 
   T *get(int index) override {
-    if (this->isIndexOutOfBounds(index)) {
+    if (!this->isMutable() || this->isIndexOutOfBounds(index)) {
       return nullptr;
     }
 
