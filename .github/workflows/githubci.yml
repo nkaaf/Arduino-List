@@ -1,6 +1,6 @@
 name: Arduino Library CI
 
-on: [pull_request, push, repository_dispatch]
+on: [ pull_request, push, repository_dispatch ]
 
 jobs:
   build:
@@ -30,3 +30,4 @@ jobs:
           GH_REPO_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
           DOXYFILE: Doxyfile
         run: bash ci/doxy_gen_and_deploy.sh
+        if: ${{ github.ref == 'refs/heads/main' }}
