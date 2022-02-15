@@ -26,6 +26,8 @@
 #ifndef LIST_ABSTRACT_LIST_HPP
 #define LIST_ABSTRACT_LIST_HPP
 
+#include <stdlib.h>
+
 /*!
  * @brief   Abstract class from which all lists can be derived.
  *
@@ -68,6 +70,17 @@ protected:
     return index < 0 || index >= this->getSize();
   }
 
+  /*!
+   * @brief Get a pointer to the entry at the given index. If the given index
+   *        does not exists, null will be returned.
+   * @note  If the list is immutable, the returned pointer has to be free'd with
+   *        free() in order to prevent memory leaks.
+   *
+   * @param index   Index of the element to get.
+   * @return    Pointer to the element.
+   */
+  virtual T *get(int index) = 0;
+
 public:
   /*!
    * @brief Add the value to the list at the given index. The original entry at
@@ -89,27 +102,31 @@ public:
   virtual void remove(int index) = 0;
 
   /*!
-   * @brief Get a pointer to the entry at the given index. If the given index
-   * does not exists in the list or the list is immutable, null will be
-   * returned.
-   * @note  If you only want to get the value, use getValue().
-   *
-   * @param index   Index of the element to get.
-   * @return    Pointer to the element.
-   */
-  virtual T *get(int index) = 0;
-
-  /*!
-   * @brief Get the plain value at the given index.
-   * @note  Be safe, that the given index exists and the list is mutable,
-   * otherwise the program will crash here!
-   * @see   get()
-   * @todo  Rewrite this to let the program not crash!
+   * @brief Get the value at the index.
+   * @note  Be safe, that the index exists otherwise the program will crash here!
    *
    * @param index   Index of element to get.
    * @return    Value.
    */
-  T getValue(int index) { return *get(index); }
+  T getValue(int index) {
+      T* ptr = getPointer(index);
+      T val = *ptr;
+      if (!this->isMutable()) {
+          free(ptr);
+      }
+      return val;
+  }
+
+  /*!
+   * @brief Get a pointer to the entry at the given index. If the given index
+   *        does not exists, null will be returned.
+   * @note  If the list is immutable, the returned pointer has to be free'd with
+   *        free() in order to prevent memory leaks.
+   *
+   * @param index   Index of element to get.
+   * @return    Pointer to the element.
+   */
+  T *getPointer(int index) { return get(index); }
 
   /*!
    * @brief Add a new entry at the end of the list.
@@ -141,25 +158,26 @@ public:
    * @param list    Other list to copy from.
    */
   void addAll(AbstractList<T> &list) {
-    for (int i = 0; i < list.getSize(); ++i) {
-      this->addLast(*list.get(i));
-    }
+    this->addAll(this->getSize(), list);
   }
 
   /*!
    * @brief Add all entries from the given list to this list at the given index.
    *        The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
-   * @see   addAtIndex()
-   * @note  Use this only if you know what you are doing. Otherwise use
-   *        addAll().
    *
    * @param index   Index, at which the list should be added.
    * @param list    List to add.
    */
   void addAll(int index, AbstractList<T> &list) {
     for (int i = 0; i < list.getSize(); i++) {
-      this->addAtIndex(index++, *list.get(i));
+        T val = list.getValue(i);
+        T *finalValue = (T *)malloc(sizeof(T));
+        memcpy(finalValue, &val, sizeof(T));
+        this->addAtIndex(index++, *finalValue);
+        if (!this->isMutable()) {
+            free(finalValue);
+        }
     }
   }
 
@@ -178,7 +196,7 @@ public:
     T *arr = (T *)malloc(this->getSize() * sizeof(T));
 
     for (int i = 0; i < this->getSize(); ++i) {
-      arr[i] = *this->get(i);
+      arr[i] = this->getValue(i);
     }
 
     return arr;
@@ -223,7 +241,7 @@ public:
     }
 
     for (int i = 0; i < this->getSize(); i++) {
-      if (*list.get(i) != *this->get(i)) {
+      if (list.getValue(i) != this->getValue(i)) {
         return false;
       }
     }
@@ -231,14 +249,13 @@ public:
   }
 
   /*!
-   * @brief Get a pointer to the entry at the given index.
-   * @see   get()
+   * @brief Get the value of the element at the index.
    * @see   getValue()
    *
    * @param index   Index of the element to get.
-   * @return    Pointer to the element.
+   * @return    Value of the element.
    */
-  T *operator[](int index) { return get(index); }
+  T operator[](int index) { return getValue(index); }
 
   /*!
    * @brief Compare two lists whether their attributes and entries are equal.

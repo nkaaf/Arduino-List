@@ -26,7 +26,6 @@
 #ifndef LIST_SINGLE_LINKED_LIST_HPP
 #define LIST_SINGLE_LINKED_LIST_HPP
 
-#include <stdlib.h>
 #include <string.h>
 
 #include "AbstractList.hpp"
@@ -89,14 +88,35 @@ private:
   Entry *head = nullptr; /// The first entry of the list.
   Entry *tail = nullptr; /// The last entry of the list.
 
+protected:
+    T *get(int index) override {
+        if (this->isIndexOutOfBounds(index)) {
+            return nullptr;
+        }
+
+        Entry *current = this->head;
+        int i = 0;
+        while (i != index) {
+            current = current->getNext();
+            i++;
+        }
+
+        if (this->isMutable()) {
+            return (T *) current->getValue();
+        } else {
+            T *finalValue = (T *)malloc(sizeof(T));
+            memcpy(finalValue, current->getValue(), sizeof(T));
+            return finalValue;
+        }
+    }
+
 public:
   /*!
    * @brief Constructor of a SingleLinkedList Object.
    *
-   * @param mutableList true if the list should be mutable (default); false
-   *                    otherwise.
+   * @param mutableList true if the list should be mutable; false otherwise (default).
    */
-  explicit SingleLinkedList<T>(bool mutableList = true)
+  explicit SingleLinkedList<T>(bool mutableList = false)
       : AbstractList<T>(mutableList) {}
 
   /*!
@@ -206,21 +226,6 @@ public:
       this->head = nullptr;
       this->tail = nullptr;
     }
-  }
-
-  T *get(int index) override {
-    if (!this->isMutable() || this->isIndexOutOfBounds(index)) {
-      return nullptr;
-    }
-
-    Entry *current = this->head;
-    int i = 0;
-    while (i != index) {
-      current = current->getNext();
-      i++;
-    }
-
-    return (T *)current->getValue();
   }
 };
 

@@ -16,8 +16,8 @@ SingleLinkedList	KEYWORD1
 
 addAtIndex	KEYWORD2
 remove	KEYWORD2
-get	KEYWORD2
 getValue	KEYWORD2
+getPointer	KEYWORD2
 addLast	KEYWORD2
 addFirst	KEYWORD2
 add	KEYWORD2
