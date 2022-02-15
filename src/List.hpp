@@ -55,7 +55,8 @@ public:
   /*!
    * @brief Constructor of a List Object.
    *
-   * @param mutableList true if the list should be mutable; false otherwise (default).
+   * @param mutableList true if the list should be mutable; false otherwise
+   *                    (default).
    */
   explicit List<T>(bool mutableList = false)
       : SingleLinkedList<T>(mutableList) {}

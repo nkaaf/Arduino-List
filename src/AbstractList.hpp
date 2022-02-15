@@ -103,18 +103,19 @@ public:
 
   /*!
    * @brief Get the value at the index.
-   * @note  Be safe, that the index exists otherwise the program will crash here!
+   * @note  Be safe, that the index exists otherwise the program will crash
+   *        here!
    *
    * @param index   Index of element to get.
    * @return    Value.
    */
   T getValue(int index) {
-      T* ptr = getPointer(index);
-      T val = *ptr;
-      if (!this->isMutable()) {
-          free(ptr);
-      }
-      return val;
+    T *ptr = getPointer(index);
+    T val = *ptr;
+    if (!this->isMutable()) {
+      free(ptr);
+    }
+    return val;
   }
 
   /*!
@@ -157,9 +158,7 @@ public:
    *
    * @param list    Other list to copy from.
    */
-  void addAll(AbstractList<T> &list) {
-    this->addAll(this->getSize(), list);
-  }
+  void addAll(AbstractList<T> &list) { this->addAll(this->getSize(), list); }
 
   /*!
    * @brief Add all entries from the given list to this list at the given index.
@@ -171,13 +170,13 @@ public:
    */
   void addAll(int index, AbstractList<T> &list) {
     for (int i = 0; i < list.getSize(); i++) {
-        T val = list.getValue(i);
-        T *finalValue = (T *)malloc(sizeof(T));
-        memcpy(finalValue, &val, sizeof(T));
-        this->addAtIndex(index++, *finalValue);
-        if (!this->isMutable()) {
-            free(finalValue);
-        }
+      T val = list.getValue(i);
+      T *finalValue = (T *)malloc(sizeof(T));
+      memcpy(finalValue, &val, sizeof(T));
+      this->addAtIndex(index++, *finalValue);
+      if (!this->isMutable()) {
+        free(finalValue);
+      }
     }
   }
 

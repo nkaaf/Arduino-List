@@ -89,32 +89,33 @@ private:
   Entry *tail = nullptr; /// The last entry of the list.
 
 protected:
-    T *get(int index) override {
-        if (this->isIndexOutOfBounds(index)) {
-            return nullptr;
-        }
-
-        Entry *current = this->head;
-        int i = 0;
-        while (i != index) {
-            current = current->getNext();
-            i++;
-        }
-
-        if (this->isMutable()) {
-            return (T *) current->getValue();
-        } else {
-            T *finalValue = (T *)malloc(sizeof(T));
-            memcpy(finalValue, current->getValue(), sizeof(T));
-            return finalValue;
-        }
+  T *get(int index) override {
+    if (this->isIndexOutOfBounds(index)) {
+      return nullptr;
     }
+
+    Entry *current = this->head;
+    int i = 0;
+    while (i != index) {
+      current = current->getNext();
+      i++;
+    }
+
+    if (this->isMutable()) {
+      return (T *)current->getValue();
+    } else {
+      T *finalValue = (T *)malloc(sizeof(T));
+      memcpy(finalValue, current->getValue(), sizeof(T));
+      return finalValue;
+    }
+  }
 
 public:
   /*!
    * @brief Constructor of a SingleLinkedList Object.
    *
-   * @param mutableList true if the list should be mutable; false otherwise (default).
+   * @param mutableList true if the list should be mutable; false otherwise
+   *                    (default).
    */
   explicit SingleLinkedList<T>(bool mutableList = false)
       : AbstractList<T>(mutableList) {}
