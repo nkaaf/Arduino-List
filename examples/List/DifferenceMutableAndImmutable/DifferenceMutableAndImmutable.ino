@@ -1,9 +1,9 @@
 #include <List.hpp>
 
 // Create a mutable list
-List<int> mutableList;
+List<int> mutableList(true);
 // Create an immutable list
-List<int> immutableList(false);
+List<int> immutableList;
 
 void setup() {
   Serial.begin(9600);
