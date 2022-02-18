@@ -27,6 +27,7 @@
 #define LIST_ABSTRACT_LIST_HPP
 
 #include <stdlib.h>
+#include <string.h>
 
 /*!
  * @brief   Abstract class from which all lists can be derived.
@@ -35,10 +36,48 @@
  */
 template <typename T> class AbstractList {
 private:
-  int size = 0;            /// Size of the list
-  bool mutableList = true; /// Is the list mutable or immutable
+  size_t size = 0;         /// Size of the list.
+  bool mutableList = true; /// Is the list mutable or immutable.
 
 protected:
+  /// Sometimes it is allowed, that index == this->getSize() to insert it behind
+  /// the last entry
+#define extendedIsIndexOutOfBounds(index)                                      \
+  ((index) != this->getSize() && this->isIndexOutOfBounds(index))
+
+  /// Create a final Value from the given Value
+#define createFinalValue(value, finalValue, T)                                 \
+  finalValue = (T *)malloc(sizeof(T));                                         \
+  memcpy(finalValue, &(value), sizeof(T));
+
+  /**
+   * Class representing an abstract entry in the list.
+   */
+  class AbstractEntry {
+  private:
+    T *value = nullptr; /// Pointer to the value.
+
+  public:
+    /*!
+     * @brief   Constructor of an AbstractEntry Object.
+     *
+     * @param value Value of the entry.
+     */
+    explicit AbstractEntry(T *value) : value(value) {}
+
+    /*!
+     * @brief   Free the memory of the value to prevent memory leaks.
+     */
+    void freeValue() { free(value); }
+
+    /*!
+     * @brief   Get the value of the entry.
+     *
+     * @return  Pointer to the value of the entry.
+     */
+    T *getValue() { return value; };
+  };
+
   /*!
    * @brief Constructor of an AbstractList Object.
    *
@@ -50,13 +89,13 @@ protected:
    * @brief Increase the size of the list by one. Should only be called after an
    *        insertion!
    */
-  void increaseSize() { this->size++; }
+  void increaseSize() { size++; }
 
   /*!
    * @brief Decrease the size of the list by one. Should only be called after an
    *        deletion!
    */
-  void decreaseSize() { this->size--; }
+  void decreaseSize() { size--; }
 
   /*!
    * @brief Method to verify if the given index is out of the range of the list
@@ -66,9 +105,7 @@ protected:
    * @return    true if the given index is in the range of the list; false
    *            otherwise
    */
-  bool isIndexOutOfBounds(int index) {
-    return index < 0 || index >= this->getSize();
-  }
+  bool isIndexOutOfBounds(int index) { return index < 0 || index >= getSize(); }
 
   /*!
    * @brief Get a pointer to the entry at the given index. If the given index
@@ -83,6 +120,14 @@ protected:
 
 public:
   /*!
+   * @brief Add a new entry at the end of the list.
+   * @see   addLast()
+   *
+   * @param value   Value to add.
+   */
+  void add(T &value) { addLast(value); }
+
+  /*!
    * @brief Add the value to the list at the given index. The original entry at
    *        this index, and followings, will be placed directly after the new
    *        entry.
@@ -95,28 +140,46 @@ public:
   virtual void addAtIndex(int index, T &value) = 0;
 
   /*!
-   * @brief Remove the entry at the given index.
+   * @brief Add all entries from the given list to this list at the given index.
+   *        The original entry at this index, and followings, will be placed
+   *        directly after the entries of the given list.
    *
-   * @param index   Index of element to remove.
+   * @param index   Index, at which the list should be added.
+   * @param list    List to add.
    */
-  virtual void remove(int index) = 0;
+  void addAll(int index, AbstractList<T> &list) {
+    for (int i = 0; i < list.getSize(); i++) {
+      T *finalValue;
+      createFinalValue(*list.getValue(i), finalValue, T);
+      addAtIndex(index++, *finalValue);
+      if (!this->isMutable()) {
+        free(finalValue);
+      }
+    }
+  }
 
   /*!
-   * @brief Get the value at the index.
-   * @note  Be safe, that the index exists otherwise the program will crash
-   *        here!
+   * @brief Add all entries from the given list at the end of the list.
+   * @see   addLast()
    *
-   * @param index   Index of element to get.
-   * @return    Value.
+   * @param list    Other list to copy from.
    */
-  T getValue(int index) {
-    T *ptr = getPointer(index);
-    T val = *ptr;
-    if (!this->isMutable()) {
-      free(ptr);
-    }
-    return val;
-  }
+  void addAll(AbstractList<T> &list) { addAll(getSize(), list); }
+
+  /*!
+   * @brief Add a new entry at the beginning of the list.
+   *
+   * @param value   Value to add.
+   */
+  void addFirst(T &value) { addAtIndex(0, value); }
+
+  /*!
+   * @brief Add a new entry at the end of the list.
+   * @see   add()
+   *
+   * @param value   Value to add.
+   */
+  void addLast(T &value) { addAtIndex(getSize(), value); }
 
   /*!
    * @brief Get a pointer to the entry at the given index. If the given index
@@ -130,83 +193,35 @@ public:
   T *getPointer(int index) { return get(index); }
 
   /*!
-   * @brief Add a new entry at the end of the list.
-   * @see   add()
+   * @brief Get the value at the index.
+   * @note  Be safe, that the index exists otherwise the program will crash
+   *        here!
    *
-   * @param value   Value to add.
+   * @param index   Index of element to get.
+   * @return    Value.
    */
-  void addLast(T &value) { this->addAtIndex(this->getSize(), value); }
-
-  /*!
-   * @brief Add a new entry at the beginning of the list.
-   *
-   * @param value   Value to add.
-   */
-  void addFirst(T &value) { this->addAtIndex(0, value); }
-
-  /*!
-   * @brief Add a new entry at the end of the list.
-   * @see   addLast()
-   *
-   * @param value   Value to add.
-   */
-  void add(T &value) { this->addLast(value); }
-
-  /*!
-   * @brief Add all entries from the given list at the end of the list.
-   * @see   addLast()
-   *
-   * @param list    Other list to copy from.
-   */
-  void addAll(AbstractList<T> &list) { this->addAll(this->getSize(), list); }
-
-  /*!
-   * @brief Add all entries from the given list to this list at the given index.
-   *        The original entry at this index, and followings, will be placed
-   *        directly after the entries of the given list.
-   *
-   * @param index   Index, at which the list should be added.
-   * @param list    List to add.
-   */
-  void addAll(int index, AbstractList<T> &list) {
-    for (int i = 0; i < list.getSize(); i++) {
-      T val = list.getValue(i);
-      T *finalValue = (T *)malloc(sizeof(T));
-      memcpy(finalValue, &val, sizeof(T));
-      this->addAtIndex(index++, *finalValue);
-      if (!this->isMutable()) {
-        free(finalValue);
-      }
+  T getValue(int index) {
+    T *ptr = getPointer(index);
+    T val = *ptr;
+    if (!isMutable()) {
+      free(ptr);
     }
+    return val;
   }
 
   /*!
-   * @brief Get an array which represent the list.
-   * @note  The returned pointer has to be free'd with free() in order to
-   *        prevent memory leaks.
+   * @brief Remove the entry at the given index.
    *
-   * @return    Array representation of the list or null if the list is empty.
+   * @param index   Index of element to remove.
    */
-  T *toArray() {
-    if (this->getSize() == 0) {
-      return nullptr;
-    }
-
-    T *arr = (T *)malloc(this->getSize() * sizeof(T));
-
-    for (int i = 0; i < this->getSize(); ++i) {
-      arr[i] = this->getValue(i);
-    }
-
-    return arr;
-  }
+  virtual void remove(int index) = 0;
 
   /*!
    * @brief Get the number how many elements are saved in the list.
    *
    * @return    Size of the list.
    */
-  int getSize() { return this->size; }
+  size_t getSize() { return size; }
 
   /*!
    * @brief Check if the list is mutable.
@@ -220,7 +235,28 @@ public:
    *
    * @return    true if the list is empty; false otherwise
    */
-  bool isEmpty() { return this->size == 0; }
+  bool isEmpty() { return size == 0; }
+
+  /*!
+   * @brief Get an array which represent the list.
+   * @note  The returned pointer has to be free'd with free() in order to
+   *        prevent memory leaks.
+   *
+   * @return    Array representation of the list or null if the list is empty.
+   */
+  T *toArray() {
+    if (getSize() == 0) {
+      return nullptr;
+    }
+
+    T *arr = (T *)malloc(getSize() * sizeof(T));
+
+    for (int i = 0; i < getSize(); ++i) {
+      arr[i] = getValue(i);
+    }
+
+    return arr;
+  }
 
   /*!
    * @brief Compare two lists whether their attributes and entries are equal.
@@ -231,16 +267,16 @@ public:
    * @return    true if the lists are equal; false otherwise.
    */
   bool equals(AbstractList<T> &list) {
-    if (list.isMutable() != this->isMutable()) {
+    if (list.isMutable() != isMutable()) {
       return false;
     }
 
-    if (list.getSize() != this->getSize()) {
+    if (list.getSize() != getSize()) {
       return false;
     }
 
-    for (int i = 0; i < this->getSize(); i++) {
-      if (list.getValue(i) != this->getValue(i)) {
+    for (int i = 0; i < getSize(); i++) {
+      if (list.getValue(i) != getValue(i)) {
         return false;
       }
     }
@@ -272,7 +308,7 @@ public:
    *
    * @param value   Value to add.
    */
-  void operator+(T &value) { this->addLast(value); }
+  void operator+(T &value) { this->add(value); }
 
   /*!
    * @brief Add all entries from the given list at the end of the list.
@@ -283,4 +319,4 @@ public:
   void operator+(AbstractList<T> &list) { this->addAll(list); }
 };
 
-#endif /* LIST_ABSTRACT_LIST_HPP */
+#endif // LIST_ABSTRACT_LIST_HPP

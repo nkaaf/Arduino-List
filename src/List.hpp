@@ -62,4 +62,4 @@ public:
       : SingleLinkedList<T>(mutableList) {}
 };
 
-#endif /* LIST_HPP */
+#endif // LIST_HPP

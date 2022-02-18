@@ -14,16 +14,16 @@ SingleLinkedList	KEYWORD1
 # Methods and Functions (KEYWORD2)
 ###########################################
 
+add	KEYWORD2
 addAtIndex	KEYWORD2
-remove	KEYWORD2
+addAll	KEYWORD2
+addFirst	KEYWORD2
+addLast	KEYWORD2
 getValue	KEYWORD2
 getPointer	KEYWORD2
-addLast	KEYWORD2
-addFirst	KEYWORD2
-add	KEYWORD2
-addAll	KEYWORD2
-toArray	KEYWORD2
+remove	KEYWORD2
 getSize	KEYWORD2
 isMutable	KEYWORD2
 isEmpty	KEYWORD2
+toArray	KEYWORD2
 equals	KEYWORD2
