@@ -149,8 +149,9 @@ public:
    */
   void addAll(int index, AbstractList<T> &list) {
     for (int i = 0; i < list.getSize(); i++) {
+      T val = list.getValue(i);
       T *finalValue;
-      createFinalValue(*list.getValue(i), finalValue, T);
+      createFinalValue(val, finalValue, T);
       addAtIndex(index++, *finalValue);
       if (!this->isMutable()) {
         free(finalValue);

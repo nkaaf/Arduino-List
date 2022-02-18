@@ -84,8 +84,9 @@ protected:
     if (this->isMutable()) {
       return (T *)current->getValue();
     } else {
-      T *finalValue = current->getValue();
-      createFinalValue(finalValue, finalValue, T);
+      T val = *current->getValue();
+      T *finalValue;
+      createFinalValue(val, finalValue, T);
       return finalValue;
     }
   }
