@@ -36,7 +36,7 @@
  */
 template <typename T> class AbstractList {
 private:
-  size_t size = 0;         /// Size of the list.
+  int size = 0;         /// Size of the list.
   bool mutableList = true; /// Is the list mutable or immutable.
 
 protected:
@@ -221,7 +221,7 @@ public:
    *
    * @return    Size of the list.
    */
-  size_t getSize() { return size; }
+  int getSize() { return size; }
 
   /*!
    * @brief Check if the list is mutable.
