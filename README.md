@@ -1,4 +1,6 @@
-# List ![Build Status](https://github.com/nkaaf/List/workflows/Arduino%20Library%20CI/badge.svg)
+# List
+![Build Status](https://github.com/nkaaf/List/workflows/Arduino%20Library%20CI/badge.svg)
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/nkaaf/library/List.svg)](https://registry.platformio.org/libraries/nkaaf/List)
 
 Library to extend the Arduino Ecosystem with different List Implementations.
 
@@ -8,7 +10,7 @@ https://semver.org/ compliant
 
 ## Arduino Library References
 
-* https://www.arduino.cc/en/Reference/APIStyleGuide
-* https://www.arduino.cc/en/Reference/StyleGuide
-* https://arduino.github.io/arduino-cli/0.19/library-specification/
-* https://arduino.github.io/arduino-cli/0.19/sketch-specification/
+* https://docs.arduino.cc/hacking/software/ArduinoStyleGuide
+* https://docs.arduino.cc/hacking/software/LibraryTutorial
+* https://arduino.github.io/arduino-cli/0.21/library-specification/
+* https://arduino.github.io/arduino-cli/0.21/sketch-specification/

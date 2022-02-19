@@ -26,12 +26,10 @@
 #ifndef LIST_SINGLE_LINKED_LIST_HPP
 #define LIST_SINGLE_LINKED_LIST_HPP
 
-#include <string.h>
-
 #include "AbstractList.hpp"
 
 /*!
- * @brief   Implementation of a single-linked list
+ * @brief   Implementation of a single-linked list.
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
@@ -40,9 +38,8 @@ private:
   /*!
    * @brief Class representing one entry of the list.
    */
-  class Entry {
+  class Entry : public AbstractList<T>::AbstractEntry {
   private:
-    T *value = nullptr;    /// Pointer to the value
     Entry *next = nullptr; /// Pointer to the next element of the list
 
   public:
@@ -51,38 +48,21 @@ private:
      *
      * @param value Value of the entry.
      */
-    explicit Entry(T *value) : value(value) {}
-
-    /*!
-     * @brief   Destructor of an Entry Object.
-     */
-    ~Entry() { next = nullptr; }
-
-    /*!
-     * @brief   Free the memory of the value to prevent memory leaks.
-     */
-    void freeValue() { free(value); }
-
-    /*!
-     * @brief   Get the value of the entry.
-     *
-     * @return  Pointer to the value of the entry.
-     */
-    T *getValue() { return this->value; };
+    explicit Entry(T *value) : AbstractList<T>::AbstractEntry(value) {}
 
     /*!
      * @brief   Get the next entry of the list.
      *
      * @return  Pointer to the next element.
      */
-    Entry *getNext() const { return this->next; };
+    Entry *getNext() const { return next; };
 
     /*!
      * @brief   Set the next entry of the list.
      *
      * @param nextEntry Pointer to the next entry.
      */
-    void setNext(Entry *nextEntry) { this->next = nextEntry; }
+    void setNext(Entry *nextEntry) { next = nextEntry; }
   };
 
   Entry *head = nullptr; /// The first entry of the list.
@@ -94,7 +74,7 @@ protected:
       return nullptr;
     }
 
-    Entry *current = this->head;
+    Entry *current = head;
     int i = 0;
     while (i != index) {
       current = current->getNext();
@@ -104,8 +84,9 @@ protected:
     if (this->isMutable()) {
       return (T *)current->getValue();
     } else {
-      T *finalValue = (T *)malloc(sizeof(T));
-      memcpy(finalValue, current->getValue(), sizeof(T));
+      T val = *current->getValue();
+      T *finalValue;
+      createFinalValue(val, finalValue, T);
       return finalValue;
     }
   }
@@ -124,8 +105,8 @@ public:
    * @brief Destructor of a SingleLinkedList Object.
    */
   ~SingleLinkedList() {
-    if (this->head != nullptr) {
-      Entry *current = this->head;
+    if (head != nullptr) {
+      Entry *current = head;
       Entry *next;
       for (int i = 0; i < this->getSize(); i++) {
         next = current->getNext();
@@ -137,19 +118,14 @@ public:
         delete current;
         current = next;
       }
-
-      this->head = nullptr;
-      this->tail = nullptr;
     }
   }
 
   void addAtIndex(int index, T &value) override {
     // it is allowed, that index == this->getSize() to insert it behind the last
     // entry
-    if (index != this->getSize()) {
-      if (this->isIndexOutOfBounds(index)) {
-        return;
-      }
+    if (extendedIsIndexOutOfBounds(index)) {
+      return;
     }
 
     Entry *entry;
@@ -157,26 +133,27 @@ public:
     if (this->isMutable()) {
       entry = new Entry(&value);
     } else {
-      T *finalValue = (T *)malloc(sizeof(T));
-      memcpy(finalValue, &value, sizeof(T));
+      T *finalValue;
+      createFinalValue(value, finalValue, T);
       entry = new Entry(finalValue);
     }
 
-    if (this->getSize() == 0) {
-      // Add entry to empty list
-      this->head = entry;
-      this->tail = entry;
-    } else if (index == 0) {
-      // Add entry to not empty list but at first position
-      entry->setNext(this->head);
-      this->head = entry;
+    if (index == 0) {
+      if (this->getSize() == 0) {
+        // Add entry to an empty list
+        tail = entry;
+      } else {
+        // Add entry to a not empty list
+        entry->setNext(head);
+      }
+      head = entry;
     } else if (index == this->getSize()) {
       // Add entry at not empty list but at last position
-      this->tail->setNext(entry);
-      this->tail = entry;
+      tail->setNext(entry);
+      tail = entry;
     } else {
       // Add entry to not empty list, somewhere in the middle
-      Entry *current = this->head;
+      Entry *current = head;
       for (int i = 0; i < index - 1; ++i) {
         current = current->getNext();
       }
@@ -192,7 +169,7 @@ public:
       return;
     }
 
-    Entry *current = this->head;
+    Entry *current = head;
     // current is either the element to delete if index == 0, or the previous
     // element
     if (index != 0) {
@@ -204,11 +181,11 @@ public:
     }
 
     if (index == this->getSize() - 1) {
-      this->tail = current;
+      tail = current;
     }
 
     if (index == 0) {
-      this->head = current->getNext();
+      head = current->getNext();
     }
 
     // current is always the element to delete
@@ -224,10 +201,10 @@ public:
     this->decreaseSize();
 
     if (this->getSize() == 0) {
-      this->head = nullptr;
-      this->tail = nullptr;
+      head = nullptr;
+      tail = nullptr;
     }
   }
 };
 
-#endif /* LIST_SINGLE_LINKED_LIST_HPP */
+#endif // LIST_SINGLE_LINKED_LIST_HPP
