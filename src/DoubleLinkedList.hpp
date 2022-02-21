@@ -5,7 +5,7 @@
  * easy-to-use list implementations. They are specially designed and optimized
  * for different purposes.
  *
- * Copyright (C) 2021  Niklas Kaaf
+ * Copyright (C) 2022  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,24 +23,25 @@
  * USA
  */
 
-#ifndef LIST_SINGLE_LINKED_LIST_HPP
-#define LIST_SINGLE_LINKED_LIST_HPP
+#ifndef LIST_DOUBLE_LINKED_LIST_HPP
+#define LIST_DOUBLE_LINKED_LIST_HPP
 
 #include "AbstractList.hpp"
 
 /*!
- * @brief   Implementation of a single-linked list.
+ * @brief   Implementation of a double-linked list.
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class SingleLinkedList : public AbstractList<T> {
+template <typename T> class DoubleLinkedList : public AbstractList<T> {
 private:
   /*!
-   * @brief Class representing one entry of the list.
+   * @brief   Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
   private:
-    Entry *next = nullptr; /// Pointer to the next element of the list
+    Entry *prev = nullptr; /// Pointer to the previous element of the list.
+    Entry *next = nullptr; /// Pointer to the next element of the list.
 
   public:
     /*!
@@ -55,7 +56,7 @@ private:
      *
      * @return  Pointer to the next element.
      */
-    Entry *getNext() const { return next; };
+    Entry *getNext() const { return next; }
 
     /*!
      * @brief   Set the next entry of the list.
@@ -63,6 +64,20 @@ private:
      * @param nextEntry Pointer to the next entry.
      */
     void setNext(Entry *nextEntry) { next = nextEntry; }
+
+    /*!
+     * @brief   Get the previous entry of the list.
+     *
+     * @return  Pointer to the previous element.
+     */
+    Entry *getPrev() const { return prev; }
+
+    /*!
+     * @brief   Set the previous entry fo the list.
+     *
+     * @param prevEntry Pointer to the previous entry.
+     */
+    void setPrev(Entry *prevEntry) { prev = prevEntry; }
   };
 
   Entry *head = nullptr; /// The first entry of the list.
@@ -74,11 +89,18 @@ protected:
       return nullptr;
     }
 
-    Entry *current = head;
-    int i = 0;
-    while (i != index) {
-      current = current->getNext();
-      i++;
+    Entry *current;
+    // optimize searching in large lists
+    if (index > abs(this->getSize() / 2)) {
+      current = tail;
+      for (int i = this->getSize(); i > index + 1; --i) {
+        current = current->getPrev();
+      }
+    } else {
+      current = head;
+      for (int i = 0; i < index; i++) {
+        current = current->getNext();
+      }
     }
 
     if (this->isMutable()) {
@@ -93,22 +115,22 @@ protected:
 
 public:
   /*!
-   * @brief Constructor of a SingleLinkedList Object.
+   * @brief   Constructor of a DoubleLinkedList Object.
    *
    * @param mutableList true if the list should be mutable; false otherwise
    *                    (default).
    */
-  explicit SingleLinkedList<T>(bool mutableList = false)
+  explicit DoubleLinkedList<T>(bool mutableList = false)
       : AbstractList<T>(mutableList) {}
 
   /*!
-   * @brief Destructor of a SingleLinkedList Object.
+   * @brief Destructor of a DoubleLinkedList Object.
    */
-  ~SingleLinkedList() {
+  ~DoubleLinkedList() {
     if (head != nullptr) {
       Entry *current = head;
       Entry *next;
-      for (int i = 0; i < this->getSize(); i++) {
+      for (int i = 0; i < this->getSize(); ++i) {
         next = current->getNext();
 
         if (!this->isMutable()) {
@@ -143,22 +165,39 @@ public:
         // Add entry to an empty list
         tail = entry;
       } else {
-        // Add entry to a not empty list
+        // Add entry to not empty list
         entry->setNext(head);
+        head->setPrev(entry);
       }
       head = entry;
     } else if (index == this->getSize()) {
       // Add entry at not empty list but at last position
       tail->setNext(entry);
+      entry->setPrev(tail);
       tail = entry;
     } else {
-      // Add entry to not empty list, somewhere in the middle
-      Entry *current = head;
-      for (int i = 0; i < index - 1; ++i) {
-        current = current->getNext();
+      // Add entry to a not empty list, somewhere in the middle
+      Entry *current;
+
+      // optimize searching in large lists
+      if (index >= abs(this->getSize() / 2)) {
+        current = tail;
+        for (int i = this->getSize(); i > index + 1; --i) {
+          current = current->getPrev();
+        }
+        entry->setNext(current);
+        entry->setPrev(current->getPrev());
+        current->setPrev(entry);
+      } else {
+        current = head;
+        for (int i = 0; i < index - 1; ++i) {
+          current = current->getNext();
+        }
+        entry->setNext(current->getNext());
+        entry->setPrev(current);
+        entry->getNext()->setPrev(entry);
+        current->setNext(entry);
       }
-      entry->setNext(current->getNext());
-      current->setNext(entry);
     }
 
     this->increaseSize();
@@ -170,18 +209,33 @@ public:
     }
 
     Entry *current = head;
-    // current is either the element to delete if index == 0, or the previous
-    // element
-    if (index != 0) {
-      int i = 0;
-      while (i < index - 1) {
-        current = current->getNext();
-        i++;
+
+    // optimize searching in large lists
+    if (index >= abs(this->getSize() / 2)) {
+      if (index != 0) {
+        current = tail;
+        int i = this->getSize() - 1;
+        while (i > index - 1) {
+          current = current->getPrev();
+          i--;
+        }
+      }
+    } else {
+      if (index != 0) {
+        int i = 0;
+        while (i < index - 1) {
+          current = current->getNext();
+          i++;
+        }
       }
     }
 
     if (index == this->getSize() - 1) {
       tail = current;
+    }
+
+    if (index == 0) {
+      head = current->getNext();
     }
 
     Entry *toDelete;
@@ -191,6 +245,9 @@ public:
     } else {
       toDelete = current->getNext();
       current->setNext(current->getNext()->getNext());
+      if (current->getNext() != nullptr) {
+        current->getNext()->setPrev(current);
+      }
     }
 
     if (!this->isMutable()) {
@@ -207,4 +264,4 @@ public:
   }
 };
 
-#endif // LIST_SINGLE_LINKED_LIST_HPP
+#endif // LIST_DOUBLE_LINKED_LIST_HPP

@@ -9,6 +9,7 @@
 AbstractList	KEYWORD1
 List	KEYWORD1
 SingleLinkedList	KEYWORD1
+DoubleLinkedList	KEYWORD1
 
 ###########################################
 # Methods and Functions (KEYWORD2)
