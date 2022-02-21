@@ -104,22 +104,7 @@ public:
   /*!
    * @brief Destructor of a SingleLinkedList Object.
    */
-  ~SingleLinkedList() {
-    if (head != nullptr) {
-      Entry *current = head;
-      Entry *next;
-      for (int i = 0; i < this->getSize(); i++) {
-        next = current->getNext();
-
-        if (!this->isMutable()) {
-          current->freeValue();
-        }
-
-        delete current;
-        current = next;
-      }
-    }
-  }
+  ~SingleLinkedList() { this->clear(); }
 
   void addAtIndex(int index, T &value) override {
     // it is allowed, that index == this->getSize() to insert it behind the last
@@ -163,6 +148,27 @@ public:
 
     this->increaseSize();
   };
+
+  void clear() override {
+    if (this->getSize() > 0) {
+      Entry *current = head;
+      Entry *next;
+      for (int i = 0; i < this->getSize(); ++i) {
+        next = current->getNext();
+
+        if (!this->isMutable()) {
+          current->freeValue();
+        }
+
+        delete current;
+        current = next;
+      }
+
+      this->resetSize();
+      head = nullptr;
+      tail = nullptr;
+    }
+  }
 
   void remove(int index) override {
     if (this->isIndexOutOfBounds(index)) {
