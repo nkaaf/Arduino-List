@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['singlelinkedlist',['SingleLinkedList',['../class_single_linked_list.html',1,'']]]
+  ['list',['List',['../class_list.html',1,'']]]
 ];
