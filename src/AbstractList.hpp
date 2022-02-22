@@ -36,8 +36,8 @@
  */
 template <typename T> class AbstractList {
 private:
-  int size = 0;            /// Size of the list.
-  bool mutableList = true; /// Is the list mutable or immutable.
+  int size = 0;             /// Size of the list.
+  bool mutableList = false; /// Is the list mutable or immutable.
 
 protected:
   /// Sometimes it is allowed, that index == this->getSize() to insert it behind
@@ -96,6 +96,11 @@ protected:
    *        deletion!
    */
   void decreaseSize() { size--; }
+
+  /*!
+   * @brief Reset the size to zero.
+   */
+  void resetSize() { size = 0; }
 
   /*!
    * @brief Method to verify if the given index is out of the range of the list
@@ -211,11 +216,22 @@ public:
   }
 
   /*!
+   * @brief Remove all elements from the List.
+   */
+  virtual void clear() = 0;
+
+  /*!
    * @brief Remove the entry at the given index.
    *
    * @param index   Index of element to remove.
    */
   virtual void remove(int index) = 0;
+
+  /*!
+   * @brief Remove all elements from the List.
+   * @note Alias of clear().
+   */
+  void removeAll() { clear(); }
 
   /*!
    * @brief Get the number how many elements are saved in the list.
