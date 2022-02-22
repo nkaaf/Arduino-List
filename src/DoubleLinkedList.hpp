@@ -1,5 +1,5 @@
 /*!
- * @file SingleLinkedList.hpp
+ * @file DoubleLinkedList.hpp
  *
  * This file is part of the List library. It extends the arduino ecosystem with
  * easy-to-use list implementations. They are specially designed and optimized
@@ -84,6 +84,9 @@ private:
   Entry *tail = nullptr; /// The last entry of the list.
 
 protected:
+  /*!
+   * @copydoc AbstractList::get()
+   */
   T *get(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return nullptr;
@@ -128,6 +131,9 @@ public:
    */
   ~DoubleLinkedList() { this->clear(); }
 
+  /*!
+   * @copydoc AbstractList::addAtIndex()
+   */
   void addAtIndex(int index, T &value) override {
     // it is allowed, that index == this->getSize() to insert it behind the last
     // entry
@@ -188,6 +194,9 @@ public:
     this->increaseSize();
   };
 
+  /*!
+   * @copydoc AbstractList::clear()
+   */
   void clear() override {
     if (this->getSize() > 0) {
       Entry *current = head;
@@ -209,6 +218,9 @@ public:
     tail = nullptr;
   }
 
+  /*!
+   * @copydoc AbstractList::remove()
+   */
   void remove(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return;

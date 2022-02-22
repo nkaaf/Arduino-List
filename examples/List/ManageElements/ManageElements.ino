@@ -41,6 +41,21 @@ void setup() {
   Serial.print("After the deletion, the list has: ");
   Serial.print(list.getSize());
   Serial.println(" element(s)");
+
+  // Add 10 more elements
+  int e = 0;
+  for (int i = 0; i < 10; ++i) {
+    list.add(e);
+  }
+  Serial.print("After the insertion, the list has: ");
+  Serial.print(list.getSize());
+  Serial.println(" element(s)");
+
+  // Clear list
+  list.clear();
+  Serial.print("After the clear, the list has: ");
+  Serial.print(list.getSize());
+  Serial.println(" element(s)");
 }
 
 void loop() {}
