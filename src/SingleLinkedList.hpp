@@ -69,6 +69,9 @@ private:
   Entry *tail = nullptr; /// The last entry of the list.
 
 protected:
+  /*!
+   * @copydoc AbstractList::get()
+   */
   T *get(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return nullptr;
@@ -106,6 +109,9 @@ public:
    */
   ~SingleLinkedList() { this->clear(); }
 
+  /*!
+   * @copydoc AbstractList::addAtIndex()
+   */
   void addAtIndex(int index, T &value) override {
     // it is allowed, that index == this->getSize() to insert it behind the last
     // entry
@@ -149,6 +155,9 @@ public:
     this->increaseSize();
   };
 
+  /*!
+   * @copydoc AbstractList::clear()
+   */
   void clear() override {
     if (this->getSize() > 0) {
       Entry *current = head;
@@ -170,6 +179,9 @@ public:
     }
   }
 
+  /*!
+   * @copydoc AbstractList::remove()
+   */
   void remove(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return;

@@ -125,7 +125,8 @@ protected:
 
 public:
   /*!
-   * @brief Add a new entry at the end of the list.
+   * @copybrief AbstractList::addLast()
+   * @note Alias of addLast().
    * @see   addLast()
    *
    * @param value   Value to add.
@@ -166,7 +167,7 @@ public:
 
   /*!
    * @brief Add all entries from the given list at the end of the list.
-   * @see   addLast()
+   * @see   addAll()
    *
    * @param list    Other list to copy from.
    */
@@ -188,13 +189,9 @@ public:
   void addLast(T &value) { addAtIndex(getSize(), value); }
 
   /*!
-   * @brief Get a pointer to the entry at the given index. If the given index
-   *        does not exists, null will be returned.
-   * @note  If the list is immutable, the returned pointer has to be free'd with
-   *        free() in order to prevent memory leaks.
-   *
-   * @param index   Index of element to get.
-   * @return    Pointer to the element.
+   * @copydoc AbstractList::get()
+   * @note Alias of get().
+   * @see get()
    */
   T *getPointer(int index) { return get(index); }
 
@@ -228,8 +225,9 @@ public:
   virtual void remove(int index) = 0;
 
   /*!
-   * @brief Remove all elements from the List.
+   * @copybrief AbstractList::clear()
    * @note Alias of clear().
+   * @see clear().
    */
   void removeAll() { clear(); }
 
@@ -301,37 +299,26 @@ public:
   }
 
   /*!
-   * @brief Get the value of the element at the index.
+   * @copydoc AbstractList::getValue()
    * @see   getValue()
-   *
-   * @param index   Index of the element to get.
-   * @return    Value of the element.
    */
   T operator[](int index) { return getValue(index); }
 
   /*!
-   * @brief Compare two lists whether their attributes and entries are equal.
+   * @copydoc AbstractList::equals()
    * @see   equals()
-   *
-   * @param list    Second list to compare.
-   * @return    true if the lists are equal; false otherwise.
    */
   bool operator==(AbstractList<T> &list) { return equals(list); }
 
   /*!
-   * @brief Add a new entry at the end of the list.
-   * @see   add()
-   * @see   addLast()
-   *
-   * @param value   Value to add.
+   * @copydoc AbstractList::add()
+   * @see add()
    */
   void operator+(T &value) { this->add(value); }
 
   /*!
-   * @brief Add all entries from the given list at the end of the list.
-   * @see   addAll()
-   *
-   * @param list    Other list to copy from.
+   * @copydoc AbstractList::addAll(AbstractList<T>&)
+   * @see addAll(AbstractList<T>&)
    */
   void operator+(AbstractList<T> &list) { this->addAll(list); }
 };
