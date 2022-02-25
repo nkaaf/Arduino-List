@@ -330,4 +330,3 @@ public:
 };
 
 #endif // LIST_ABSTRACT_LIST_HPP
-
