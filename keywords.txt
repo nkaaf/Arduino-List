@@ -24,6 +24,8 @@ clear	KEYWORD2
 getValue	KEYWORD2
 getPointer	KEYWORD2
 remove	KEYWORD2
+removeFirst	KEYWORD2
+removeLast	KEYWORD2
 removeAll	KEYWORD2
 getSize	KEYWORD2
 isMutable	KEYWORD2

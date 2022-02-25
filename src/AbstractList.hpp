@@ -127,7 +127,7 @@ public:
   /*!
    * @copybrief AbstractList::addLast()
    * @note Alias of addLast().
-   * @see   addLast()
+   * @see addLast()
    *
    * @param value   Value to add.
    */
@@ -167,7 +167,6 @@ public:
 
   /*!
    * @brief Add all entries from the given list at the end of the list.
-   * @see   addAll()
    *
    * @param list    Other list to copy from.
    */
@@ -182,7 +181,6 @@ public:
 
   /*!
    * @brief Add a new entry at the end of the list.
-   * @see   add()
    *
    * @param value   Value to add.
    */
@@ -190,8 +188,6 @@ public:
 
   /*!
    * @copydoc AbstractList::get()
-   * @note Alias of get().
-   * @see get()
    */
   T *getPointer(int index) { return get(index); }
 
@@ -225,9 +221,19 @@ public:
   virtual void remove(int index) = 0;
 
   /*!
+   * @brief Remove the first entry from the list.
+   */
+  virtual void removeFirst() { remove(0); }
+
+  /*!
+   * @brief Remove the las entry from the list.
+   */
+  virtual void removeLast() { remove(getSize() - 1); }
+
+  /*!
    * @copybrief AbstractList::clear()
    * @note Alias of clear().
-   * @see clear().
+   * @see clear()
    */
   void removeAll() { clear(); }
 
@@ -250,7 +256,7 @@ public:
    *
    * @return    true if the list is empty; false otherwise
    */
-  bool isEmpty() { return size == 0; }
+  bool isEmpty() { return getSize() == 0; }
 
   /*!
    * @brief Get an array which represent the list.
@@ -324,3 +330,4 @@ public:
 };
 
 #endif // LIST_ABSTRACT_LIST_HPP
+
