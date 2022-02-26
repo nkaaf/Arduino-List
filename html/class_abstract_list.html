@@ -122,6 +122,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a071af49ccdd54f39ba37eeb7ecd1cb08"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#a071af49ccdd54f39ba37eeb7ecd1cb08">remove</a> (int index)=0</td></tr>
 <tr class="memdesc:a071af49ccdd54f39ba37eeb7ecd1cb08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the entry at the given index.  <a href="#a071af49ccdd54f39ba37eeb7ecd1cb08">More...</a><br /></td></tr>
 <tr class="separator:a071af49ccdd54f39ba37eeb7ecd1cb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef932a451cea115323da713416eec20f"><td class="memItemLeft" align="right" valign="top"><a id="aef932a451cea115323da713416eec20f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#aef932a451cea115323da713416eec20f">removeFirst</a> ()</td></tr>
+<tr class="memdesc:aef932a451cea115323da713416eec20f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the first entry from the list. <br /></td></tr>
+<tr class="separator:aef932a451cea115323da713416eec20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d9d9a04fd3921cb3d21d58986f2897a"><td class="memItemLeft" align="right" valign="top"><a id="a4d9d9a04fd3921cb3d21d58986f2897a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#a4d9d9a04fd3921cb3d21d58986f2897a">removeLast</a> ()</td></tr>
+<tr class="memdesc:a4d9d9a04fd3921cb3d21d58986f2897a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the las entry from the list. <br /></td></tr>
+<tr class="separator:a4d9d9a04fd3921cb3d21d58986f2897a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bd9c7f78190cda9d47e5e2e5905af4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#a5bd9c7f78190cda9d47e5e2e5905af4b">removeAll</a> ()</td></tr>
 <tr class="separator:a5bd9c7f78190cda9d47e5e2e5905af4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0301ad2d5e0d8a4347bd472be7f47bb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list.html#a0301ad2d5e0d8a4347bd472be7f47bb5">getSize</a> ()</td></tr>
@@ -461,7 +469,6 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Add all entries from the given list at the end of the list. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#a11786b96463a32f02e2a59905d766c61" title="Add all entries from the given list to this list at the given index. The original entry at this index...">addAll()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Other list to copy from. </td></tr>
@@ -534,7 +541,6 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Add a new entry at the end of the list. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#aa79a090b9a40a0a578b3cccf147cb802">add()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>Value to add. </td></tr>
@@ -579,8 +585,6 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the element. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Alias of <a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. If the given index does not exists, null will be returned. ">get()</a>. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#ac309f665b1b19a28b3c4fb1121452f50" title="Get a pointer to the entry at the given index. If the given index does not exists, null will be returned. ">get()</a> </dd></dl>
 
 </div>
 </div>
@@ -685,7 +689,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Remove all elements from the <a class="el" href="class_list.html" title="A list with the most basic implementation as a single-linked list. ">List</a>. </p><dl class="section note"><dt>Note</dt><dd>Alias of <a class="el" href="class_abstract_list.html#a8c2bc2d5f7a4a1b07263f9d1fa7dcbd4" title="Remove all elements from the List. ">clear()</a>. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#a8c2bc2d5f7a4a1b07263f9d1fa7dcbd4" title="Remove all elements from the List. ">clear()</a>. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#a8c2bc2d5f7a4a1b07263f9d1fa7dcbd4" title="Remove all elements from the List. ">clear()</a> </dd></dl>
 
 </div>
 </div>
@@ -992,7 +996,6 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Add all entries from the given list at the end of the list. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_abstract_list.html#a11786b96463a32f02e2a59905d766c61" title="Add all entries from the given list to this list at the given index. The original entry at this index...">addAll()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>Other list to copy from. </td></tr>
