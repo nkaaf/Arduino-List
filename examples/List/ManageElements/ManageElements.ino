@@ -36,18 +36,24 @@ void setup() {
   Serial.print(list.getSize());
   Serial.println(" element(s)");
 
+  Serial.println("Adding 10 more elements");
+  // Add 10 more elements
+  int y = 0;
+  for (int i = 0; i < 10; ++i) {
+    list.add(y);
+    y++;
+  }
+
   // Remove element from list
-  list.remove(0); // With this, you will remove the first element of the list.
-  Serial.print("After the deletion, the list has: ");
+  list.remove(3); // With this, you will remove the third element of the list.
+  Serial.print("After the deletion of the third element, the list has: ");
   Serial.print(list.getSize());
   Serial.println(" element(s)");
 
-  // Add 10 more elements
-  int e = 0;
-  for (int i = 0; i < 10; ++i) {
-    list.add(e);
-  }
-  Serial.print("After the insertion, the list has: ");
+  // Remove the first and the last element
+  list.removeFirst();
+  list.removeLast();
+  Serial.print("After the deletion of the first and the last element, the list has: ");
   Serial.print(list.getSize());
   Serial.println(" element(s)");
 
