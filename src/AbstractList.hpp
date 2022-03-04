@@ -48,7 +48,7 @@ protected:
   /// Create a final Value from the given Value
 #define createFinalValue(value, finalValue, T)                                 \
   finalValue = (T *)malloc(sizeof(T));                                         \
-  memcpy(finalValue, &(value), sizeof(T));
+  memcpy(finalValue, &value, sizeof(T));
 
   /**
    * Class representing an abstract entry in the list.
@@ -64,6 +64,11 @@ protected:
      * @param value Value of the entry.
      */
     explicit AbstractEntry(T *value) : value(value) {}
+
+    /*!
+     * @brief   Destructor of an AbstractEntry Object.
+     */
+    ~AbstractEntry() { value = nullptr; }
 
     /*!
      * @brief   Free the memory of the value to prevent memory leaks.

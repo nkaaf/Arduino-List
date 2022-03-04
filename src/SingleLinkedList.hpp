@@ -51,6 +51,11 @@ private:
     explicit Entry(T *value) : AbstractList<T>::AbstractEntry(value) {}
 
     /*!
+     * @brief   Destructor of an Entry Object.
+     */
+    ~Entry() { next = nullptr; }
+
+    /*!
      * @brief   Get the next entry of the list.
      *
      * @return  Pointer to the next element.
@@ -87,9 +92,9 @@ protected:
     if (this->isMutable()) {
       return (T *)current->getValue();
     } else {
-      T val = *current->getValue();
+      T *val = current->getValue();
       T *finalValue;
-      createFinalValue(val, finalValue, T);
+      createFinalValue(*val, finalValue, T);
       return finalValue;
     }
   }
