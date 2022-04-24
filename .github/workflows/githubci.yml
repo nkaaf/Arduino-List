@@ -30,4 +30,3 @@ jobs:
           GH_REPO_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
           DOXYFILE: Doxyfile
         run: bash ci/doxy_gen_and_deploy.sh
-        if: ${{ github.ref == 'refs/heads/main' }}
