@@ -11,7 +11,7 @@ https://semver.org/ compliant
 
 ## Arduino Library References
 
-* https://docs.arduino.cc/hacking/software/ArduinoStyleGuide
-* https://docs.arduino.cc/hacking/software/LibraryTutorial
-* https://arduino.github.io/arduino-cli/0.21/library-specification/
-* https://arduino.github.io/arduino-cli/0.21/sketch-specification/
+* https://docs.arduino.cc/learn/contributions/arduino-writing-style-guide
+* https://docs.arduino.cc/learn/contributions/arduino-library-style-guide
+* https://arduino.github.io/arduino-cli/0.27/library-specification/
+* https://arduino.github.io/arduino-cli/0.27/sketch-specification/
