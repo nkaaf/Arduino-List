@@ -1,5 +1,5 @@
 # List
-![Build Status](https://github.com/nkaaf/List/workflows/Arduino%20Library%20CI/badge.svg)
+![Build Status](https://github.com/nkaaf/Arduino-List/workflows/Arduino%20Library%20CI/badge.svg)
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/nkaaf/library/List.svg)](https://registry.platformio.org/libraries/nkaaf/List)
 [![arduino-library-badge](https://www.ardu-badge.com/badge/List.svg)](https://www.ardu-badge.com/List)
 
