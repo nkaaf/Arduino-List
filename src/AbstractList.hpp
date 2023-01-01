@@ -5,7 +5,7 @@
  * easy-to-use list implementations. They are specially designed and optimized
  * for different purposes.
  *
- * Copyright (C) 2021  Niklas Kaaf
+ * Copyright (C) 2021-2023  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
