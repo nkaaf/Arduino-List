@@ -37,7 +37,7 @@
       "files": [
         "ManageElements.ino"
       ]
-    }
+    },
     {
       "name": "UtilsAndHelper",
       "base": "examples/List/UtilsAndHelper",
