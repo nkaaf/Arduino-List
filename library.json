@@ -20,7 +20,7 @@
     "maintainer": true
   },
   "license": "LGPL-2.1-only",
-  "frameworks": "arduino",
+  "frameworks": "*",
   "platforms": "*",
   "headers": "List.hpp",
   "examples": [
