@@ -1,6 +1,6 @@
 {
   "name": "List",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "The Ultimate Collection of Lists. This library extends the Arduino ecosystem with the functionality of several easy-to-use lists for numerous purposes.",
   "keywords": [
     "arduino",
@@ -47,7 +47,7 @@
     }
   ],
   "export": {
-    "import": [
+    "include": [
       "examples/*",
       "src/*",
       "library.json",
