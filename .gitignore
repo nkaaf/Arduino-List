@@ -1,6 +1,22 @@
+# CLion
 .idea
+
+# CMake
+CMakeLists.txt
 cmake-build-*
 
 # gh_pages files
 doxygen_sqlite3.db
 html
+
+# VSCode
+.vscode
+
+# PlatformIO for testing
+.pio
+test
+lib
+src/main.cpp
+include
+platformio.ini
+CMakeListsPrivate.txt

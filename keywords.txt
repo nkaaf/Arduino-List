@@ -31,4 +31,6 @@ getSize	KEYWORD2
 isMutable	KEYWORD2
 isEmpty	KEYWORD2
 toArray	KEYWORD2
+fromArray	KEYWORD2
+sort	KEYWORD2
 equals	KEYWORD2
