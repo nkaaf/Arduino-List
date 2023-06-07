@@ -191,7 +191,10 @@ public:
   void addAll(AbstractList<T> &list) { addAll(getSize(), list); }
 
   /*!
-   * @copydoc AbstractList::add()
+   * @brief Add all entries from the given array
+   *
+   * @param arr Array
+   * @param size  Size of array
    */
   void addAll(T *arr, size_t size) {
     for (size_t i = 0; i < size; ++i) {
@@ -350,17 +353,17 @@ public:
    * @param list    Second list to compare.
    * @return    true if the lists are equal; false otherwise.
    */
-  bool equals(AbstractList<T> &list) {
-    if (list.isMutable() != isMutable()) {
+  bool equals(AbstractList<T> &other) {
+    if (other.isMutable() != isMutable()) {
       return false;
     }
 
-    if (list.getSize() != getSize()) {
+    if (other.getSize() != getSize()) {
       return false;
     }
 
     for (int i = 0; i < getSize(); i++) {
-      if (list.getValue(i) != getValue(i)) {
+      if (other.getValue(i) != getValue(i)) {
         return false;
       }
     }
@@ -377,19 +380,27 @@ public:
    * @copydoc AbstractList::equals()
    * @see   equals()
    */
-  bool operator==(AbstractList<T> &list) { return equals(list); }
+  bool operator==(AbstractList<T> &other) { return equals(other); }
 
   /*!
-   * Opposite of '=='
-   *  @see equals()
+   * @brief Opposite of '=='
+   * @see equals()
+   *
+   * @param list Other tist to compare
    */
-  bool operator!=(AbstractList<T> &list) { return !(*this == list); }
+  bool operator!=(AbstractList<T> &other) { return !(*this == other); }
 
   /*!
    * @copydoc AbstractList::add()
    * @see add()
    */
   void operator+(T &value) { this->add(value); }
+
+  /*!
+   * @copydoc AbstractList::add()
+   * @see add()
+   */
+  void operator+(T &&value) { this->add(value); }
 
   /*!
    * @copydoc AbstractList::addAll(AbstractList<T>&)
