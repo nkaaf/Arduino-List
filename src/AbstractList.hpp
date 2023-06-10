@@ -350,7 +350,7 @@ public:
    * @note  If you use this list for non-primitive data types, check if the
    *        data type implements the != operator!
    *
-   * @param list    Second list to compare.
+   * @param other    Second list to compare.
    * @return    true if the lists are equal; false otherwise.
    */
   bool equals(AbstractList<T> &other) {
@@ -386,7 +386,8 @@ public:
    * @brief Opposite of '=='
    * @see equals()
    *
-   * @param list Other tist to compare
+   * @param list Other list to compare
+   * @return    true if the lists are not equal; false otherwise.
    */
   bool operator!=(AbstractList<T> &other) { return !(*this == other); }
 
