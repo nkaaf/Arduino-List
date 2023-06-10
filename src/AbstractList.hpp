@@ -5,7 +5,7 @@
  * easy-to-use list implementations. They are specially designed and optimized
  * for different purposes.
  *
- * Copyright (C) 2021-2022  Niklas Kaaf
+ * Copyright (C) 2021-2023  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -139,6 +139,11 @@ public:
   void add(T &value) { addLast(value); }
 
   /*!
+   * @copydoc AbstractList::add()
+   */
+  void add(T &&value) { addLast(value); }
+
+  /*!
    * @brief Add the value to the list at the given index. The original entry at
    *        this index, and followings, will be placed directly after the new
    *        entry.
@@ -149,6 +154,14 @@ public:
    * @param value   Value of the new entry.
    */
   virtual void addAtIndex(int index, T &value) = 0;
+
+  /*!
+   * @copydoc AbstractList::addAtIndex()
+   */
+  virtual void addAtIndex(int index, T &&value) {
+    T val = value;
+    addAtIndex(index, val);
+  }
 
   /*!
    * @brief Add all entries from the given list to this list at the given index.
@@ -178,6 +191,18 @@ public:
   void addAll(AbstractList<T> &list) { addAll(getSize(), list); }
 
   /*!
+   * @brief Add all entries from the given array
+   *
+   * @param arr Array
+   * @param size  Size of array
+   */
+  void addAll(T *arr, size_t size) {
+    for (size_t i = 0; i < size; ++i) {
+      add(arr[i]);
+    }
+  }
+
+  /*!
    * @brief Add a new entry at the beginning of the list.
    *
    * @param value   Value to add.
@@ -185,11 +210,21 @@ public:
   void addFirst(T &value) { addAtIndex(0, value); }
 
   /*!
+   * @copydoc AbstractList::addFirst()
+   */
+  void addFirst(T value) { addAtIndex(0, value); }
+
+  /*!
    * @brief Add a new entry at the end of the list.
    *
    * @param value   Value to add.
    */
   void addLast(T &value) { addAtIndex(getSize(), value); }
+
+  /*!
+   * @copydoc AbstractList::addLast()
+   */
+  void addLast(T &&value) { addAtIndex(getSize(), value); }
 
   /*!
    * @copydoc AbstractList::get()
@@ -285,24 +320,50 @@ public:
   }
 
   /*!
+   * @brief Create the list from given array.
+   * @note Removes all entries in current list.
+   *
+   * @param arr     Array
+   * @param size Size of Array
+   */
+  void fromArray(T *arr, size_t size) {
+    this->clear();
+    addAll(arr, size);
+  }
+
+  /*!
+   * @brief Sort the entries in the list with Quicksort.
+   *
+   * @param compFunc Comparator Method
+   */
+  void sort(int (*compFunc)(const void *, const void *)) {
+    T *arr = this->toArray();
+
+    qsort(arr, getSize(), sizeof(*arr), compFunc);
+
+    this->fromArray(arr, getSize());
+    free(arr);
+  }
+
+  /*!
    * @brief Compare two lists whether their attributes and entries are equal.
    * @note  If you use this list for non-primitive data types, check if the
    *        data type implements the != operator!
    *
-   * @param list    Second list to compare.
+   * @param other    Second list to compare.
    * @return    true if the lists are equal; false otherwise.
    */
-  bool equals(AbstractList<T> &list) {
-    if (list.isMutable() != isMutable()) {
+  bool equals(AbstractList<T> &other) {
+    if (other.isMutable() != isMutable()) {
       return false;
     }
 
-    if (list.getSize() != getSize()) {
+    if (other.getSize() != getSize()) {
       return false;
     }
 
     for (int i = 0; i < getSize(); i++) {
-      if (list.getValue(i) != getValue(i)) {
+      if (other.getValue(i) != getValue(i)) {
         return false;
       }
     }
@@ -319,13 +380,28 @@ public:
    * @copydoc AbstractList::equals()
    * @see   equals()
    */
-  bool operator==(AbstractList<T> &list) { return equals(list); }
+  bool operator==(AbstractList<T> &other) { return equals(other); }
+
+  /*!
+   * @brief Opposite of '=='
+   * @see equals()
+   *
+   * @param other Other list to compare
+   * @return    true if the lists are not equal; false otherwise.
+   */
+  bool operator!=(AbstractList<T> &other) { return !(*this == other); }
 
   /*!
    * @copydoc AbstractList::add()
    * @see add()
    */
   void operator+(T &value) { this->add(value); }
+
+  /*!
+   * @copydoc AbstractList::add()
+   * @see add()
+   */
+  void operator+(T &&value) { this->add(value); }
 
   /*!
    * @copydoc AbstractList::addAll(AbstractList<T>&)

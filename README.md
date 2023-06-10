@@ -13,5 +13,5 @@ https://semver.org/ compliant
 
 * https://docs.arduino.cc/learn/contributions/arduino-writing-style-guide
 * https://docs.arduino.cc/learn/contributions/arduino-library-style-guide
-* https://arduino.github.io/arduino-cli/0.29/library-specification/
-* https://arduino.github.io/arduino-cli/0.29/sketch-specification/
+* https://arduino.github.io/arduino-cli/0.33/library-specification/
+* https://arduino.github.io/arduino-cli/0.33/sketch-specification/
