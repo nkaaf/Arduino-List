@@ -3,6 +3,7 @@
 // Create an immutable list
 List<int> list;
 
+// TODO: rvalue
 void setup() {
   Serial.begin(9600);
 
@@ -15,18 +16,14 @@ void setup() {
 
   // Get the first element
   Serial.print("The value of the first element with the getValue() method is: ");
-  Serial.println(list.getValue(0)); // The most comfortable way to get the first elements value is to call the getValue() method. You cannot get the address of the element with the getValue() method!
+  Serial.println(list.get(0)); // The most comfortable way to get the first elements value is to call the getValue() method. You cannot get the address of the element with the getValue() method!
 
   // Get the first element (alternative)
   Serial.print("The value of the first element with the [] operator is: ");
   int firstElement = list[0]; // The '[]' Operator is a synonym for the getValue() method.
   Serial.println(firstElement);
 
-  // Get the first element (alternative)
-  Serial.print("The value of the first element with the getPointer() method and '*' is: ");
-  int *firstElementPtr = list.getPointer(0); // Here, have to be the '*' to get the int Value, because otherwise a pointer (memory address) will be returned.
-  Serial.println(*firstElementPtr);
-  free(firstElementPtr); // free the pointer because it is an immutable list
+  // TODO: add getMutableValue for mutable lists
 
   Serial.println("As you can see, there are three possible ways to get the value. The last way is not for beginners because you have to handle pointers.");
   Serial.println();

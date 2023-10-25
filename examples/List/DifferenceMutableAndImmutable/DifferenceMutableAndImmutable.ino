@@ -20,9 +20,9 @@ void setup() {
 
   // Get the first element of both lists
   Serial.print("The first element of the first list is: ");
-  Serial.println(mutableList.getValue(0));
+  Serial.println(mutableList.get(0));
   Serial.print("The first element of the second list is: ");
-  Serial.println(immutableList.getValue(0));
+  Serial.println(immutableList.get(0));
 
   Serial.println("All three values are logically the same!");
   Serial.println();
@@ -35,9 +35,9 @@ void setup() {
 
   // Get the first element of both lists
   Serial.print("The first element of the first list is: ");
-  Serial.println(mutableList.getValue(0));
+  Serial.println(mutableList.get(0));
   Serial.print("The first element of the second list is: ");
-  Serial.println(immutableList.getValue(0));
+  Serial.println(immutableList.gte(0));
 
   Serial.println("You see, that the first element of the first list has the the new value and the first element of the second list has not changed.");
   Serial.println("Elements of mutable lists can be manipulate via the same variable; immutable lists cannot!");

@@ -33,23 +33,17 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class SingleLinkedList : public AbstractList<T> {
-private:
+template<typename T>
+class SingleLinkedList : public AbstractList<T> {
+ private:
   /*!
    * @brief Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-  private:
+   private:
     Entry *next = nullptr; /// Pointer to the next element of the list
 
-  public:
-    /*!
-     * @brief   Constructor of an Entry Object.
-     *
-     * @param value Value of the entry.
-     */
-    explicit Entry(T *value) : AbstractList<T>::AbstractEntry(value) {}
-
+   public:
     /*!
      * @brief   Destructor of an Entry Object.
      */
@@ -73,11 +67,16 @@ private:
   Entry *head = nullptr; /// The first entry of the list.
   Entry *tail = nullptr; /// The last entry of the list.
 
-protected:
+ protected:
   /*!
-   * @copydoc AbstractList::get()
+   * Get the pointer to the element at the specified index.
+   *
+   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds, a nullptr will be returned.
+   *
+   * @param index
+   * @return
    */
-  T *get(int index) override {
+  T *getPointer(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return nullptr;
     }
@@ -88,18 +87,10 @@ protected:
       current = current->getNext();
       i++;
     }
-
-    if (this->isMutable()) {
-      return (T *)current->getValue();
-    } else {
-      T *val = current->getValue();
-      T *finalValue;
-      createFinalValue(*val, finalValue, T);
-      return finalValue;
-    }
+    return current->getValue();
   }
 
-public:
+ public:
   /*!
    * @brief Constructor of a SingleLinkedList Object.
    *
@@ -114,6 +105,8 @@ public:
    */
   ~SingleLinkedList() { this->clear(); }
 
+  using AbstractList<T>::addAtIndex; ///'Using' the addAtIndex method, to prevent name hiding of the addAtIndex method from AbstractList
+
   /*!
    * @copydoc AbstractList::addAtIndex()
    */
@@ -127,11 +120,10 @@ public:
     Entry *entry;
 
     if (this->isMutable()) {
-      entry = new Entry(&value);
+      //entry = new Entry(*value);
     } else {
-      T *finalValue;
-      createFinalValue(value, finalValue, T);
-      entry = new Entry(finalValue);
+      entry = new Entry();
+      entry->setValue(value);
     }
 
     if (index == 0) {
@@ -169,10 +161,6 @@ public:
       Entry *next;
       for (int i = 0; i < this->getSize(); ++i) {
         next = current->getNext();
-
-        if (!this->isMutable()) {
-          current->freeValue();
-        }
 
         delete current;
         current = next;
@@ -216,9 +204,6 @@ public:
       current->setNext(current->getNext()->getNext());
     }
 
-    if (!this->isMutable()) {
-      toDelete->freeValue();
-    }
     delete toDelete;
 
     this->decreaseSize();
