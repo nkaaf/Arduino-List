@@ -152,7 +152,7 @@ class AbstractList {
 #endif
 
   /*!
-   * @brief Add all entries from the given list to this list at the given index.
+   * @brief Add all entries from the given list to this list at a specified index.
    *        The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
    *  @note The elements from the other list, remain untouched.
@@ -175,7 +175,23 @@ class AbstractList {
   void addAll(AbstractList<T> &list) { addAll(getSize(), list); }
 
   /*!
-   * @brief Add all entries from the given array.
+   * @brief Add all entries from an array to this list at a specified index.
+   *        The original entry at this index, and followings, will be placed
+   *        directly after the entries of the given list.
+   *  @note The elements from the other list, remain untouched.
+   *
+   * @param index Index of tehis list, at which all entries should be added.
+   * @param arr Array.
+   * @param arrSize Size of the array.
+   */
+  void addAll(int index, T* arr, size_t arrSize) {
+    for (size_t i = 0; i < arrSize; ++i) {
+      addAtIndex(index++, arr[i]);
+    }
+  }
+
+  /*!
+   * @brief Add all entries from an array.
    *  @note The elements from the other list, remain untouched.
    *
    * @param arr Array.
