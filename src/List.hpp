@@ -50,8 +50,9 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class List : public SingleLinkedList<T> {
-public:
+template<typename T>
+class List : public SingleLinkedList<T> {
+ public:
   /*!
    * @brief Constructor of a List Object.
    *
@@ -62,4 +63,4 @@ public:
       : SingleLinkedList<T>(mutableList) {}
 };
 
-#endif // LIST_HPP
+#endif// LIST_HPP

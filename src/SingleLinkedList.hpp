@@ -41,7 +41,7 @@ class SingleLinkedList : public AbstractList<T> {
    */
   class Entry : public AbstractList<T>::AbstractEntry {
    private:
-    Entry *next = nullptr; /// Pointer to the next element of the list
+    Entry *next = nullptr;/// Pointer to the next element of the list
 
    public:
     /*!
@@ -64,14 +64,15 @@ class SingleLinkedList : public AbstractList<T> {
     void setNext(Entry *nextEntry) { next = nextEntry; }
   };
 
-  Entry *head = nullptr; /// The first entry of the list.
-  Entry *tail = nullptr; /// The last entry of the list.
+  Entry *head = nullptr;/// The first entry of the list.
+  Entry *tail = nullptr;/// The last entry of the list.
 
  protected:
   /*!
    * Get the pointer to the element at the specified index.
    *
-   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds, a nullptr will be returned.
+   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds,
+   * a nullptr will be returned.
    *
    * @param index
    * @return
@@ -105,7 +106,9 @@ class SingleLinkedList : public AbstractList<T> {
    */
   ~SingleLinkedList() { this->clear(); }
 
-  using AbstractList<T>::addAtIndex; ///'Using' the addAtIndex method, to prevent name hiding of the addAtIndex method from AbstractList
+  using AbstractList<T>::addAtIndex;///'Using' the addAtIndex method, to
+                                    ///prevent name hiding of the addAtIndex
+                                    ///method from AbstractList
 
   /*!
    * @copydoc AbstractList::addAtIndex()
@@ -219,4 +222,4 @@ class SingleLinkedList : public AbstractList<T> {
   }
 };
 
-#endif // LIST_SINGLE_LINKED_LIST_HPP
+#endif// LIST_SINGLE_LINKED_LIST_HPP

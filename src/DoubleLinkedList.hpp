@@ -33,17 +33,18 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class DoubleLinkedList : public AbstractList<T> {
-private:
+template<typename T>
+class DoubleLinkedList : public AbstractList<T> {
+ private:
   /*!
    * @brief   Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-  private:
-    Entry *prev = nullptr; /// Pointer to the previous element of the list.
-    Entry *next = nullptr; /// Pointer to the next element of the list.
+   private:
+    Entry *prev = nullptr;/// Pointer to the previous element of the list.
+    Entry *next = nullptr;/// Pointer to the next element of the list.
 
-  public:
+   public:
     /*!
      * @brief   Constructor of an Entry Object.
      *
@@ -88,10 +89,10 @@ private:
     void setPrev(Entry *prevEntry) { prev = prevEntry; }
   };
 
-  Entry *head = nullptr; /// The first entry of the list.
-  Entry *tail = nullptr; /// The last entry of the list.
+  Entry *head = nullptr;/// The first entry of the list.
+  Entry *tail = nullptr;/// The last entry of the list.
 
-protected:
+ protected:
   /*!
    * @copydoc AbstractList::get()
    */
@@ -115,7 +116,7 @@ protected:
     }
 
     if (this->isMutable()) {
-      return (T *)current->getValue();
+      return (T *) current->getValue();
     } else {
       T *val = current->getValue();
       T *finalValue;
@@ -124,7 +125,7 @@ protected:
     }
   }
 
-public:
+ public:
   /*!
    * @brief   Constructor of a DoubleLinkedList Object.
    *
@@ -290,4 +291,4 @@ public:
   }
 };
 
-#endif // LIST_DOUBLE_LINKED_LIST_HPP
+#endif// LIST_DOUBLE_LINKED_LIST_HPP
