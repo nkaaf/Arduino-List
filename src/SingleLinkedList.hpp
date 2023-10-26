@@ -33,17 +33,16 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template<typename T>
-class SingleLinkedList : public AbstractList<T> {
- private:
+template <typename T> class SingleLinkedList : public AbstractList<T> {
+private:
   /*!
    * @brief Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-   private:
+  private:
     Entry *next = nullptr; /// Pointer to the next element of the list
 
-   public:
+  public:
     /*!
      * @brief   Destructor of an Entry Object.
      */
@@ -67,11 +66,12 @@ class SingleLinkedList : public AbstractList<T> {
   Entry *head = nullptr; /// The first entry of the list.
   Entry *tail = nullptr; /// The last entry of the list.
 
- protected:
+protected:
   /*!
    * Get the pointer to the element at the specified index.
    *
-   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds, a nullptr will be returned.
+   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds,
+   * a nullptr will be returned.
    *
    * @param index
    * @return
@@ -90,7 +90,7 @@ class SingleLinkedList : public AbstractList<T> {
     return current->getValue();
   }
 
- public:
+public:
   /*!
    * @brief Constructor of a SingleLinkedList Object.
    *
@@ -105,7 +105,9 @@ class SingleLinkedList : public AbstractList<T> {
    */
   ~SingleLinkedList() { this->clear(); }
 
-  using AbstractList<T>::addAtIndex; ///'Using' the addAtIndex method, to prevent name hiding of the addAtIndex method from AbstractList
+  using AbstractList<T>::addAtIndex; ///'Using' the addAtIndex method, to
+                                     ///prevent name hiding of the addAtIndex
+                                     ///method from AbstractList
 
   /*!
    * @copydoc AbstractList::addAtIndex()

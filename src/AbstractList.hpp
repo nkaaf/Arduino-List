@@ -35,13 +35,12 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template<typename T>
-class AbstractList {
- private:
-  size_t size = 0;    /// Size of the list.
-  bool mutableList = false;    /// Is the list mutable or immutable.
+template <typename T> class AbstractList {
+private:
+  size_t size = 0;          /// Size of the list.
+  bool mutableList = false; /// Is the list mutable or immutable.
 
- protected:
+protected:
   /// Sometimes it is allowed, that index == this->getSize() to insert it behind
   /// the last entry
 #define extendedIsIndexOutOfBounds(index)                                      \
@@ -51,10 +50,10 @@ class AbstractList {
    * Class representing an abstract entry in the list.
    */
   class AbstractEntry {
-   private:
+  private:
     T value; /// The raw value.
 
-   public:
+  public:
     /*!
      * @brief   Get a reference to the value.
      *
@@ -67,9 +66,7 @@ class AbstractList {
      *
      * @param val   Reference to the value.
      */
-    void setValue(T &val) {
-      value = val;
-    }
+    void setValue(T &val) { value = val; }
   };
 
   /*!
@@ -83,9 +80,11 @@ class AbstractList {
    * @brief Get a pointer to the element, stored at specific index-
    *
    * @param index The index of the element to retrieve.
-   * @return The nullptr, if the index is out of bounds, otherwise the address of the element.
+   * @return The nullptr, if the index is out of bounds, otherwise the address
+   * of the element.
    *
-   * @note  This is independent from their mutability. It will always return the correct address (pointer) to the element.
+   * @note  This is independent from their mutability. It will always return the
+   * correct address (pointer) to the element.
    */
   virtual T *getPointer(int index) = 0;
 
@@ -116,7 +115,7 @@ class AbstractList {
    */
   bool isIndexOutOfBounds(int index) { return index < 0 || index >= getSize(); }
 
- public:
+public:
   /*!
    * @copybrief AbstractList::addLast()
    * @note Alias of addLast().
@@ -135,7 +134,8 @@ class AbstractList {
    * @brief Add the value to the list at the given index. The original entry at
    *        this index, and followings, will be placed directly after the new
    *        entry.
-   * @note  Allowed indices are 0 to getSize(). If the index is out of bounds, nothing will happen.
+   * @note  Allowed indices are 0 to getSize(). If the index is out of bounds,
+   * nothing will happen.
    *
    * @param index   Index of the entry, where the value should be added.
    * @param value   Value of the new entry.
@@ -146,14 +146,12 @@ class AbstractList {
   /*!
    * @copydoc AbstractList::addAtIndex()
    */
-  virtual void addAtIndex(int index, T &&value) {
-    addAtIndex(index, value);
-  }
+  virtual void addAtIndex(int index, T &&value) { addAtIndex(index, value); }
 #endif
 
   /*!
-   * @brief Add all entries from the given list to this list at a specified index.
-   *        The original entry at this index, and followings, will be placed
+   * @brief Add all entries from the given list to this list at a specified
+   * index. The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
    *  @note The elements from the other list, remain untouched.
    *
@@ -180,11 +178,11 @@ class AbstractList {
    *        directly after the entries of the given list.
    *  @note The elements from the other list, remain untouched.
    *
-   * @param index Index of tehis list, at which all entries should be added.
+   * @param index Index of this list, at which all entries should be added.
    * @param arr Array.
    * @param arrSize Size of the array.
    */
-  void addAll(int index, T* arr, size_t arrSize) {
+  void addAll(int index, T *arr, size_t arrSize) {
     for (size_t i = 0; i < arrSize; ++i) {
       addAtIndex(index++, arr[i]);
     }
@@ -212,8 +210,8 @@ class AbstractList {
 
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
   /*!
-    * @copydoc AbstractList::addFirst()
-    */
+   * @copydoc AbstractList::addFirst()
+   */
   void addFirst(T &&value) { addAtIndex(0, value); }
 #endif
 
@@ -234,24 +232,29 @@ class AbstractList {
   /*!
    * @brief Get the raw value at a specified index.
    *
-   * @note Allowed indices are 0 to getSize() - 1. If the index is out of bounds, undefined behaviour will happen. Please ne sure, that the index is valid!
-   * @note This will method will always return an immutable object. If you want to get the mutable object from your mutable list, plese use getMutableValue().
+   * @note Allowed indices are 0 to getSize() - 1. If the index is out of
+   * bounds, undefined behaviour will happen. Please ne sure, that the index is
+   * valid!
+   * @note This will method will always return an immutable object. If you want
+   * to get the mutable object from your mutable list, please use
+   * getMutableValue().
    *
    * @param index   Index of the element to get.
    * @return    Immutable object.
    */
-  T get(int index) {
-    return *this->getPointer(index);
-  }
+  T get(int index) { return *this->getPointer(index); }
 
   /*!
    * @brief Get the pointer to the mutable object at a specified index.
    *
-   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds, a nullptr will be returned.
-   * @note This method will only return a valid object for a mutable list. A immutable list will return always the nullptr.
+   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds,
+   * a nullptr will be returned.
+   * @note This method will only return a valid object for a mutable list. A
+   * immutable list will return always the nullptr.
    *
    * @param index Index of teh element to get.
-   * @return Mutable object, or nullptr if the index is out of bounds or the list is immutable.
+   * @return Mutable object, or nullptr if the index is out of bounds or the
+   * list is immutable.
    */
   T *getMutableValue(int index) {
     if (!this->isMutable()) {
@@ -269,7 +272,8 @@ class AbstractList {
   /*!
    * @brief Remove the entry at the given index.
    *
-   * @note Allowed indices are 0 to getSize() - 1. If the index is out of bounds, nothing will happen.
+   * @note Allowed indices are 0 to getSize() - 1. If the index is out of
+   * bounds, nothing will happen.
    *
    * @param index   Index of element to remove.
    */
@@ -317,11 +321,15 @@ class AbstractList {
    * @brief Get an array which represent the list.
    *
    * @note If this list is empty, a nullptr will be returned.
-   * @note The memory for the array is dynamically allocated. the returned pointer has to be free'd with free() in order to
-   *        prevent memory leaks. For further processing of the array, e.g. inserting new elements, the other method toArray(T* arr) is preferred!
-   * @note The array contains always immutable representations of the elements, saved in the list.
+   * @note The memory for the array is dynamically allocated. the returned
+   * pointer has to be free'd with free() in order to prevent memory leaks. For
+   * further processing of the array, e.g. inserting new elements, the other
+   * method toArray(T* arr) is preferred!
+   * @note The array contains always immutable representations of the elements,
+   * saved in the list.
    *
-   * @return    Array representation of the list or nullptr if the list is empty.
+   * @return    Array representation of the list or nullptr if the list is
+   * empty.
    */
   T *toArray() {
     if (getSize() == 0) {
@@ -337,8 +345,10 @@ class AbstractList {
   /*!
    * @brief Fill the passed array with immutable objects.
    *
-   * @note The array contains always immutable representations of the elements, saved in the list.
-   * @note Be sure, that the array has enough free space for all elements of the list.
+   * @note The array contains always immutable representations of the elements,
+   * saved in the list.
+   * @note Be sure, that the array has enough free space for all elements of the
+   * list.
    *
    * @param arr Array to fill.
    */
@@ -348,23 +358,23 @@ class AbstractList {
     }
   }
 
-/*!
- * @brief Create the list from given array.
- * @note Removes all entries in current list.
- *
- * @param arr     Array
- * @param arrSize Size of Array
- */
+  /*!
+   * @brief Create the list from given array.
+   * @note Removes all entries in current list.
+   *
+   * @param arr     Array
+   * @param arrSize Size of Array
+   */
   void fromArray(T *arr, size_t arrSize) {
     this->clear();
     addAll(arr, arrSize);
   }
 
-/*!
- * @brief Sort the entries in the list with Quicksort.
- *
- * @param compFunc Comparator Method
- */
+  /*!
+   * @brief Sort the entries in the list with Quicksort.
+   *
+   * @param compFunc Comparator Method
+   */
   void sort(int (*compFunc)(const void *, const void *)) {
     T *arr = this->toArray();
 
@@ -374,14 +384,14 @@ class AbstractList {
     free(arr);
   }
 
-/*!
- * @brief Compare two lists whether their attributes and entries are equal.
- * @note  If you use this list for non-primitive data types, check if the
- *        data type implements the != operator!
- *
- * @param other    Second list to compare.
- * @return    true if the lists are equal; false otherwise.
- */
+  /*!
+   * @brief Compare two lists whether their attributes and entries are equal.
+   * @note  If you use this list for non-primitive data types, check if the
+   *        data type implements the != operator!
+   *
+   * @param other    Second list to compare.
+   * @return    true if the lists are equal; false otherwise.
+   */
   bool equals(AbstractList<T> &other) {
     if (other.isMutable() != this->isMutable()) {
       return false;
@@ -434,9 +444,9 @@ class AbstractList {
 
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
   /*!
-     * @copydoc AbstractList::add()
-     * @see add()
-     */
+   * @copydoc AbstractList::add()
+   * @see add()
+   */
   void operator+(T &&value) { this->add(value); }
 #endif
 
