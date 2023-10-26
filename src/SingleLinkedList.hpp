@@ -120,7 +120,8 @@ class SingleLinkedList : public AbstractList<T> {
     Entry *entry;
 
     if (this->isMutable()) {
-      //entry = new Entry(*value);
+      // TODO:
+      entry = new Entry(value);
     } else {
       entry = new Entry();
       entry->setValue(value);
@@ -156,20 +157,22 @@ class SingleLinkedList : public AbstractList<T> {
    * @copydoc AbstractList::clear()
    */
   void clear() override {
-    if (this->getSize() > 0) {
-      Entry *current = head;
-      Entry *next;
-      for (int i = 0; i < this->getSize(); ++i) {
-        next = current->getNext();
-
-        delete current;
-        current = next;
-      }
-
-      this->resetSize();
-      head = nullptr;
-      tail = nullptr;
+    if (this->getSize() == 0) {
+      return;
     }
+
+    Entry *current = head;
+    Entry *next;
+    for (int i = 0; i < this->getSize(); ++i) {
+      next = current->getNext();
+
+      delete current;
+      current = next;
+    }
+
+    this->resetSize();
+    head = nullptr;
+    tail = nullptr;
   }
 
   /*!
