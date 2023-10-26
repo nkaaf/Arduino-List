@@ -327,10 +327,6 @@ class AbstractList {
    * @param arr Array to fill.
    */
   void toArray(T *arr) {
-    if (getSize() == 0) {
-      return arr;
-    }
-
     for (int i = 0; i < getSize(); i++) {
       arr[i] = get(i);
     }
