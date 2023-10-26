@@ -120,8 +120,9 @@ class SingleLinkedList : public AbstractList<T> {
     Entry *entry;
 
     if (this->isMutable()) {
-      // TODO:
-      entry = new Entry(value);
+      // TODO: change for mutable
+      entry = new Entry();
+      entry->setValue(value);
     } else {
       entry = new Entry();
       entry->setValue(value);
