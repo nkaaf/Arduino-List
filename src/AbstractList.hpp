@@ -28,8 +28,6 @@
 
 #include <stdlib.h>
 
-// TODO: update keywords
-
 /*!
  * @brief   Abstract class from which all lists can be derived.
  *
