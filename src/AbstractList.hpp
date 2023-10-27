@@ -118,7 +118,7 @@ class AbstractList {
 
  public:
   /*!
-   * @copybrief AbstractList::addLast()
+   * @copydoc AbstractList::addLast()
    * @note Alias of addLast().
    * @see addLast()
    */
@@ -154,7 +154,7 @@ class AbstractList {
    * @brief Add all entries from the given list to this list at a specified
    * index. The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
-   *  @note The elements from the other list, remain untouched.
+   * @note The elements from the other list, remain untouched.
    *
    * @param index   Index of this list, at which all entries should be added.
    * @param list    Other list from where to copy the entries.
@@ -167,7 +167,7 @@ class AbstractList {
 
   /*!
    * @brief Add all entries from the given list at the end of the list.
-   *  @note The elements from the other list, remain untouched.
+   * @note The elements from the other list, remain untouched.
    *
    * @param list    Other list to copy from.
    */
@@ -177,7 +177,7 @@ class AbstractList {
    * @brief Add all entries from an array to this list at a specified index.
    *        The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
-   *  @note The elements from the other list, remain untouched.
+   * @note The elements from the other list, remain untouched.
    *
    * @param index Index of this list, at which all entries should be added.
    * @param arr Array.
@@ -191,10 +191,10 @@ class AbstractList {
 
   /*!
    * @brief Add all entries from an array.
-   *  @note The elements from the other list, remain untouched.
+   * @note The elements from the other list, remain untouched.
    *
    * @param arr Array.
-   * @param size  Size of array.
+   * @param arrSize  Size of array.
    */
   void addAll(T *arr, size_t arrSize) {
     for (size_t i = 0; i < arrSize; ++i) {
@@ -291,7 +291,7 @@ class AbstractList {
   virtual void removeLast() { remove(getSize() - 1); }
 
   /*!
-   * @copybrief AbstractList::clear()
+   * @copydoc AbstractList::clear()
    * @note Alias of clear().
    * @see clear()
    */
