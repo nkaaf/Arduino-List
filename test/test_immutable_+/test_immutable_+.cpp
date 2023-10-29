@@ -6,8 +6,7 @@
 
 // ---------- In different scope (ds) ---------- //
 
-void add_ds_rvalue_primitive(void)
-{
+void add_ds_rvalue_primitive(void) {
   List<int> list;
 
   {
@@ -24,8 +23,7 @@ void add_ds_rvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ds_lvalue_primitive(void)
-{
+void add_ds_lvalue_primitive(void) {
   List<int> list;
 
   {
@@ -50,8 +48,7 @@ void add_ds_lvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ds_rvalue_class(void)
-{
+void add_ds_rvalue_class(void) {
   List<String> list;
 
   {
@@ -68,8 +65,7 @@ void add_ds_rvalue_class(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ds_lvalue_class(void)
-{
+void add_ds_lvalue_class(void) {
   List<String> list;
 
   {
@@ -96,8 +92,7 @@ void add_ds_lvalue_class(void)
 
 // ---------- In same scope (ss) ---------- //
 
-void add_ss_rvalue_primitive(void)
-{
+void add_ss_rvalue_primitive(void) {
   List<int> list;
 
   list + 1;
@@ -110,8 +105,7 @@ void add_ss_rvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ss_lvalue_primitive(void)
-{
+void add_ss_lvalue_primitive(void) {
   List<int> list;
 
   int a = 1, b = 2;
@@ -132,8 +126,7 @@ void add_ss_lvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ss_rvalue_class(void)
-{
+void add_ss_rvalue_class(void) {
   List<String> list;
 
   list + "1";
@@ -146,8 +139,7 @@ void add_ss_rvalue_class(void)
   TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void add_ss_lvalue_class(void)
-{
+void add_ss_lvalue_class(void) {
   List<String> list;
 
   String a = "1", b = "2";
@@ -170,8 +162,7 @@ void add_ss_lvalue_class(void)
 
 // ---------- void operator+(AbstractList<T> &list) ---------- //
 
-void addAll_primitive(void)
-{
+void addAll_primitive(void) {
   List<int> fromList;
   List<int> toList;
 
@@ -200,8 +191,7 @@ void addAll_primitive(void)
   TEST_ASSERT_EQUAL_INT(6, toList.getSize());
 }
 
-void addAll_class(void)
-{
+void addAll_class(void) {
   List<String> fromList;
   List<String> toList;
 
@@ -230,8 +220,7 @@ void addAll_class(void)
   TEST_ASSERT_EQUAL_INT(6, toList.getSize());
 }
 
-void setup()
-{
+void setup() {
   UNITY_BEGIN();
 
   // different scope tests
@@ -253,6 +242,5 @@ void setup()
   UNITY_END();
 }
 
-void loop()
-{
+void loop() {
 }

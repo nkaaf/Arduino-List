@@ -6,251 +6,239 @@
 
 // ---------- void clear() ---------- //
 
-void clear_primitive(void)
-{
-    List<int> list;
+void clear_primitive(void) {
+  List<int> list;
 
-    list.add(1);
-    list.add(2);
-    list.add(3);
+  list.add(1);
+  list.add(2);
+  list.add(3);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.clear();
+  list.clear();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 }
 
-void clear_class(void)
-{
-    List<String> list;
+void clear_class(void) {
+  List<String> list;
 
-    list.add("1");
-    list.add("2");
-    list.add("3");
+  list.add("1");
+  list.add("2");
+  list.add("3");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.clear();
+  list.clear();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 }
 
 // ---------- void removeAll() ---------- //
 
-void removeAll_primitive(void)
-{
-    List<int> list;
+void removeAll_primitive(void) {
+  List<int> list;
 
-    list.add(1);
-    list.add(2);
-    list.add(3);
+  list.add(1);
+  list.add(2);
+  list.add(3);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeAll();
+  list.removeAll();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 }
 
-void removeAll_class(void)
-{
-    List<String> list;
+void removeAll_class(void) {
+  List<String> list;
 
-    list.add("1");
-    list.add("2");
-    list.add("3");
+  list.add("1");
+  list.add("2");
+  list.add("3");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeAll();
+  list.removeAll();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 }
 
 // ---------- void remove(int index) ---------- //
 
-void remove_primitive(void)
-{
-    List<int> list;
+void remove_primitive(void) {
+  List<int> list;
 
-    list.add(1);
+  list.add(1);
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.remove(0);
+  list.remove(0);
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add(2);
-    list.add(3);
-    list.add(4);
+  list.add(2);
+  list.add(3);
+  list.add(4);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.remove(1);
+  list.remove(1);
 
-    TEST_ASSERT_EQUAL_INT(2, list.get(0));
-    TEST_ASSERT_EQUAL_INT(4, list.get(1));
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_INT(2, list.get(0));
+  TEST_ASSERT_EQUAL_INT(4, list.get(1));
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void remove_class(void)
-{
-    List<String> list;
+void remove_class(void) {
+  List<String> list;
 
-    list.add("1");
+  list.add("1");
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.remove(0);
+  list.remove(0);
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add("2");
-    list.add("3");
-    list.add("4");
+  list.add("2");
+  list.add("3");
+  list.add("4");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.remove(1);
+  list.remove(1);
 
-    TEST_ASSERT_EQUAL_STRING("2", list.get(0).c_str());
-    TEST_ASSERT_EQUAL_STRING("4", list.get(1).c_str());
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_STRING("2", list.get(0).c_str());
+  TEST_ASSERT_EQUAL_STRING("4", list.get(1).c_str());
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
 // ---------- void removeFirst() ---------- //
 
-void removeFirst_primitive(void)
-{
-    List<int> list;
+void removeFirst_primitive(void) {
+  List<int> list;
 
-    list.add(1);
+  list.add(1);
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.removeFirst();
+  list.removeFirst();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add(2);
-    list.add(3);
-    list.add(4);
+  list.add(2);
+  list.add(3);
+  list.add(4);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeFirst();
+  list.removeFirst();
 
-    TEST_ASSERT_EQUAL_INT(3, list.get(0));
-    TEST_ASSERT_EQUAL_INT(4, list.get(1));
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.get(0));
+  TEST_ASSERT_EQUAL_INT(4, list.get(1));
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void removeFirst_class(void)
-{
-    List<String> list;
+void removeFirst_class(void) {
+  List<String> list;
 
-    list.add("1");
+  list.add("1");
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.removeFirst();
+  list.removeFirst();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add("2");
-    list.add("3");
-    list.add("4");
+  list.add("2");
+  list.add("3");
+  list.add("4");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeFirst();
+  list.removeFirst();
 
-    TEST_ASSERT_EQUAL_STRING("3", list.get(0).c_str());
-    TEST_ASSERT_EQUAL_STRING("4", list.get(1).c_str());
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_STRING("3", list.get(0).c_str());
+  TEST_ASSERT_EQUAL_STRING("4", list.get(1).c_str());
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
 // ---------- void removeLast() ---------- //
 
-void removeLast_primitive(void)
-{
-    List<int> list;
+void removeLast_primitive(void) {
+  List<int> list;
 
-    list.add(1);
+  list.add(1);
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.removeLast();
+  list.removeLast();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add(2);
-    list.add(3);
-    list.add(4);
+  list.add(2);
+  list.add(3);
+  list.add(4);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeLast();
+  list.removeLast();
 
-    TEST_ASSERT_EQUAL_INT(2, list.get(0));
-    TEST_ASSERT_EQUAL_INT(3, list.get(1));
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_INT(2, list.get(0));
+  TEST_ASSERT_EQUAL_INT(3, list.get(1));
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void removeLast_class(void)
-{
-    List<String> list;
+void removeLast_class(void) {
+  List<String> list;
 
-    list.add("1");
+  list.add("1");
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.removeLast();
+  list.removeLast();
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add("2");
-    list.add("3");
-    list.add("4");
+  list.add("2");
+  list.add("3");
+  list.add("4");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 
-    list.removeLast();
+  list.removeLast();
 
-    TEST_ASSERT_EQUAL_STRING("2", list.get(0).c_str());
-    TEST_ASSERT_EQUAL_STRING("3", list.get(1).c_str());
-    TEST_ASSERT_EQUAL_INT(2, list.getSize());
+  TEST_ASSERT_EQUAL_STRING("2", list.get(0).c_str());
+  TEST_ASSERT_EQUAL_STRING("3", list.get(1).c_str());
+  TEST_ASSERT_EQUAL_INT(2, list.getSize());
 }
 
-void setup()
-{
-    UNITY_BEGIN();
+void setup() {
+  UNITY_BEGIN();
 
-    // ---------- void clear() ---------- //
-    RUN_TEST(clear_primitive);
-    RUN_TEST(clear_class);
+  // ---------- void clear() ---------- //
+  RUN_TEST(clear_primitive);
+  RUN_TEST(clear_class);
 
-    // ---------- void removeAll() ---------- //
-    RUN_TEST(removeAll_primitive);
-    RUN_TEST(removeAll_class);
+  // ---------- void removeAll() ---------- //
+  RUN_TEST(removeAll_primitive);
+  RUN_TEST(removeAll_class);
 
-    // ---------- void remove(int index) ---------- //
-    RUN_TEST(remove_primitive);
-    RUN_TEST(remove_class);
+  // ---------- void remove(int index) ---------- //
+  RUN_TEST(remove_primitive);
+  RUN_TEST(remove_class);
 
-    // ---------- void removeFirst() ---------- //
-    RUN_TEST(removeFirst_primitive);
-    RUN_TEST(removeFirst_class);
+  // ---------- void removeFirst() ---------- //
+  RUN_TEST(removeFirst_primitive);
+  RUN_TEST(removeFirst_class);
 
-    // ---------- void removeLast() ---------- //
-    RUN_TEST(removeLast_primitive);
-    RUN_TEST(removeLast_class);
+  // ---------- void removeLast() ---------- //
+  RUN_TEST(removeLast_primitive);
+  RUN_TEST(removeLast_class);
 
-    UNITY_END();
+  UNITY_END();
 }
 
-void loop()
-{
+void loop() {
 }

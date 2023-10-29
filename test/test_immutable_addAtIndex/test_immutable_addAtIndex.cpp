@@ -6,8 +6,7 @@
 
 // ---------- In different scope (ds) ---------- //
 
-void addAtIndex_ds_rvalue_primitive(void)
-{
+void addAtIndex_ds_rvalue_primitive(void) {
   List<int> list;
 
   {
@@ -32,8 +31,7 @@ void addAtIndex_ds_rvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ds_lvalue_primitive(void)
-{
+void addAtIndex_ds_lvalue_primitive(void) {
   List<int> list;
 
   {
@@ -70,8 +68,7 @@ void addAtIndex_ds_lvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ds_rvalue_class(void)
-{
+void addAtIndex_ds_rvalue_class(void) {
   List<String> list;
 
   {
@@ -96,8 +93,7 @@ void addAtIndex_ds_rvalue_class(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ds_lvalue_class(void)
-{
+void addAtIndex_ds_lvalue_class(void) {
   List<String> list;
 
   {
@@ -136,8 +132,7 @@ void addAtIndex_ds_lvalue_class(void)
 
 // ---------- In same scope (ss) ---------- //
 
-void addAtIndex_ss_rvalue_primitive(void)
-{
+void addAtIndex_ss_rvalue_primitive(void) {
   List<int> list;
 
   list.addAtIndex(0, 1);
@@ -156,8 +151,7 @@ void addAtIndex_ss_rvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ss_lvalue_primitive(void)
-{
+void addAtIndex_ss_lvalue_primitive(void) {
   List<int> list;
 
   int a = 1, b = 2, c = 3;
@@ -187,8 +181,7 @@ void addAtIndex_ss_lvalue_primitive(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ss_rvalue_class(void)
-{
+void addAtIndex_ss_rvalue_class(void) {
   List<String> list;
 
   list.addAtIndex(0, "1");
@@ -207,8 +200,7 @@ void addAtIndex_ss_rvalue_class(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void addAtIndex_ss_lvalue_class(void)
-{
+void addAtIndex_ss_lvalue_class(void) {
   List<String> list;
 
   String a = "1", b = "2", c = "3";
@@ -238,8 +230,7 @@ void addAtIndex_ss_lvalue_class(void)
   TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void setup()
-{
+void setup() {
   UNITY_BEGIN();
 
   // different scope tests
@@ -257,6 +248,5 @@ void setup()
   UNITY_END();
 }
 
-void loop()
-{
+void loop() {
 }

@@ -6,115 +6,107 @@
 
 // ---------- getSize ---------- //
 
-void getSize_primitive(void)
-{
-    List<int> list;
+void getSize_primitive(void) {
+  List<int> list;
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add(1);
+  list.add(1);
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.add(2);
-    list.add(3);
+  list.add(2);
+  list.add(3);
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
-void getSize_class(void)
-{
-    List<String> list;
+void getSize_class(void) {
+  List<String> list;
 
-    TEST_ASSERT_EQUAL_INT(0, list.getSize());
+  TEST_ASSERT_EQUAL_INT(0, list.getSize());
 
-    list.add("1");
+  list.add("1");
 
-    TEST_ASSERT_EQUAL_INT(1, list.getSize());
+  TEST_ASSERT_EQUAL_INT(1, list.getSize());
 
-    list.add("2");
-    list.add("3");
+  list.add("2");
+  list.add("3");
 
-    TEST_ASSERT_EQUAL_INT(3, list.getSize());
+  TEST_ASSERT_EQUAL_INT(3, list.getSize());
 }
 
 // ---------- is mutable ---------- //
 
-void isMutable_primitive(void)
-{
-    List<int> list;
+void isMutable_primitive(void) {
+  List<int> list;
 
-    TEST_ASSERT_FALSE(list.isMutable());
+  TEST_ASSERT_FALSE(list.isMutable());
 }
 
-void isMutable_class(void)
-{
-    List<String> list;
+void isMutable_class(void) {
+  List<String> list;
 
-    TEST_ASSERT_FALSE(list.isMutable());
+  TEST_ASSERT_FALSE(list.isMutable());
 }
 
 // ---------- is empty ---------- //
 
-void isEmpty_primitive(void)
-{
-    List<int> list;
+void isEmpty_primitive(void) {
+  List<int> list;
 
-    TEST_ASSERT_TRUE(list.isEmpty());
+  TEST_ASSERT_TRUE(list.isEmpty());
 
-    list.add(1);
+  list.add(1);
 
-    TEST_ASSERT_FALSE(list.isEmpty());
+  TEST_ASSERT_FALSE(list.isEmpty());
 
-    list.add(2);
-    list.add(3);
+  list.add(2);
+  list.add(3);
 
-    TEST_ASSERT_FALSE(list.isEmpty());
+  TEST_ASSERT_FALSE(list.isEmpty());
 
-    list.clear();
+  list.clear();
 
-    TEST_ASSERT_TRUE(list.isEmpty());
+  TEST_ASSERT_TRUE(list.isEmpty());
 }
 
-void isEmpty_class(void)
-{
-    List<String> list;
+void isEmpty_class(void) {
+  List<String> list;
 
-    TEST_ASSERT_TRUE(list.isEmpty());
+  TEST_ASSERT_TRUE(list.isEmpty());
 
-    list.add("1");
+  list.add("1");
 
-    TEST_ASSERT_FALSE(list.isEmpty());
+  TEST_ASSERT_FALSE(list.isEmpty());
 
-    list.add("2");
-    list.add("3");
+  list.add("2");
+  list.add("3");
 
-    TEST_ASSERT_FALSE(list.isEmpty());
+  TEST_ASSERT_FALSE(list.isEmpty());
 
-    list.clear();
+  list.clear();
 
-    TEST_ASSERT_TRUE(list.isEmpty());
+  TEST_ASSERT_TRUE(list.isEmpty());
 }
 
-void setup()
-{
-    UNITY_BEGIN();
+void setup() {
+  UNITY_BEGIN();
 
-    // ---------- getSize ---------- //
-    RUN_TEST(getSize_primitive);
-    RUN_TEST(getSize_class);
+  // ---------- getSize ---------- //
+  RUN_TEST(getSize_primitive);
+  RUN_TEST(getSize_class);
 
-    // ---------- is mutable ---------- //
-    RUN_TEST(isMutable_primitive);
-    RUN_TEST(isMutable_class);
+  // ---------- is mutable ---------- //
+  RUN_TEST(isMutable_primitive);
+  RUN_TEST(isMutable_class);
 
-    // ---------- is empty ---------- //
-    RUN_TEST(isEmpty_primitive);
-    RUN_TEST(isEmpty_class);
+  // ---------- is empty ---------- //
+  RUN_TEST(isEmpty_primitive);
+  RUN_TEST(isEmpty_class);
 
-    UNITY_END();
+  UNITY_END();
 }
 
-void loop()
-{
+void loop() {
 }
