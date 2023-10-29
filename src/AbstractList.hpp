@@ -316,20 +316,20 @@ class AbstractList {
    */
   bool isEmpty() { return getSize() == 0; }
 
-  //  /*!
-  //   * @brief Get an array which represent the list.
-  //   *
-  //   * @note If this list is empty, a nullptr will be returned.
-  //   * @note The memory for the array is dynamically allocated. the returned
-  //   * pointer has to be free'd with free() in order to prevent memory leaks. For
-  //   * further processing of the array, e.g. inserting new elements, the other
-  //   * method toArray(T* arr) is preferred!
-  //   * @note The array contains always immutable representations of the elements,
-  //   * saved in the list.
-  //   *
-  //   * @return    Array representation of the list or nullptr if the list is
-  //   * empty.
-  //   */
+  //
+  //  @brief Get an array which represent the list.
+  //
+  //  @note If this list is empty, a nullptr will be returned.
+  //  @note The memory for the array is dynamically allocated. the returned
+  //  pointer has to be free'd with free() in order to prevent memory leaks. For
+  //  further processing of the array, e.g. inserting new elements, the other
+  //  method toArray(T* arr) is preferred!
+  //  @note The array contains always immutable representations of the elements,
+  //  saved in the list.
+  //
+  //  @return    Array representation of the list or nullptr if the list is
+  //  empty.
+  //
   //  T *toArray() {
   //    if (getSize() == 0) {
   //      return nullptr;
@@ -341,39 +341,39 @@ class AbstractList {
   //    return arr;
   //  }
   //
-  //  /*!
-  //   * @brief Fill the passed array with immutable objects.
-  //   *
-  //   * @note The array contains always immutable representations of the elements,
-  //   * saved in the list.
-  //   * @note Be sure, that the array has enough free space for all elements of the
-  //   * list.
-  //   *
-  //   * @param arr Array to fill.
-  //   */
+  //
+  //  @brief Fill the passed array with immutable objects.
+  //
+  //  @note The array contains always immutable representations of the elements,
+  //  saved in the list.
+  //  @note Be sure, that the array has enough free space for all elements of the
+  //  list.
+  //
+  //  @param arr Array to fill.
+  //
   //  void toArray(T *arr) {
   //    for (int i = 0; i < getSize(); i++) {
   //      arr[i] = get(i);
   //    }
   //  }
   //
-  //  /*!
-  //   * @brief Create the list from given array.
-  //   * @note Removes all entries in current list.
-  //   *
-  //   * @param arr     Array
-  //   * @param arrSize Size of Array
-  //   */
+  //
+  //  @brief Create the list from given array.
+  //  @note Removes all entries in current list.
+  //
+  //  @param arr     Array
+  //  @param arrSize Size of Array
+  //
   //  void fromArray(T *arr, size_t arrSize) {
   //    this->clear();
   //    addAll(arr, arrSize);
   //  }
 
-  //  /*!
-  //   * @brief Sort the entries in the list with Quicksort.
-  //   *
-  //   * @param compFunc Comparator Method
-  //   */
+  //
+  //  @brief Sort the entries in the list with Quicksort.
+  //
+  //  @param compFunc Comparator Method
+  //
   //  void sort(int (*compFunc)(const void *, const void *)) {
   //    T *arr = this->toArray();
   //
