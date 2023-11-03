@@ -76,14 +76,16 @@ class AbstractList {
   explicit AbstractList<T>(bool mutableList) : mutableList(mutableList) {}
 
   /*!
-   * @brief Get a pointer to the element, stored at specific index-
+   * @brief Get a pointer to the element, stored at specific index.
    *
    * @param index The index of the element to retrieve.
    * @return The nullptr, if the index is out of bounds, otherwise the address
    * of the element.
    *
-   * @note  This is independent from their mutability. It will always return the
+   * @note  This is independent from the mutability of the list. It will always return the
    * correct address (pointer) to the element.
+   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds,
+   * a nullptr will be returned.
    */
   virtual T *getPointer(int index) = 0;
 

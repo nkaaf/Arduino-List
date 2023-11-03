@@ -69,13 +69,7 @@ class SingleLinkedList : public AbstractList<T> {
 
  protected:
   /*!
-   * Get the pointer to the element at the specified index.
-   *
-   * @note Allowed indices are 0 to getSize() -1. If the index is out of bounds,
-   * a nullptr will be returned.
-   *
-   * @param index
-   * @return
+   * @copydoc AbstractList::getPointer()
    */
   T *getPointer(int index) override {
     if (this->isIndexOutOfBounds(index)) {

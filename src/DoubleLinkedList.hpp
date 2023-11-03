@@ -46,13 +46,6 @@ class DoubleLinkedList : public AbstractList<T> {
 
    public:
     /*!
-     * @brief   Constructor of an Entry Object.
-     *
-     * @param value Value of the entry.
-     */
-    explicit Entry(T *value) : AbstractList<T>::AbstractEntry(value) {}
-
-    /*!
      * @brief   Destructor of an Entry Object.
      */
     ~Entry() {
@@ -94,9 +87,9 @@ class DoubleLinkedList : public AbstractList<T> {
 
  protected:
   /*!
-   * @copydoc AbstractList::get()
+   * @copydoc AbstractList::getPointer()
    */
-  T *get(int index) override {
+  T *getPointer(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return nullptr;
     }
@@ -115,14 +108,7 @@ class DoubleLinkedList : public AbstractList<T> {
       }
     }
 
-    if (this->isMutable()) {
-      return (T *) current->getValue();
-    } else {
-      T *val = current->getValue();
-      T *finalValue;
-      createFinalValue(*val, finalValue, T);
-      return finalValue;
-    }
+    return current->getValue();
   }
 
  public:
@@ -140,6 +126,10 @@ class DoubleLinkedList : public AbstractList<T> {
    */
   ~DoubleLinkedList() { this->clear(); }
 
+  using AbstractList<T>::addAtIndex;///'Using' the addAtIndex method, to
+                                    ///prevent name hiding of the addAtIndex
+                                    ///method from AbstractList
+
   /*!
    * @copydoc AbstractList::addAtIndex()
    */
@@ -153,11 +143,12 @@ class DoubleLinkedList : public AbstractList<T> {
     Entry *entry;
 
     if (this->isMutable()) {
-      entry = new Entry(&value);
+      // TODO: change for mutable
+      entry = new Entry();
+      entry->setValue(value);
     } else {
-      T *finalValue;
-      createFinalValue(value, finalValue, T);
-      entry = new Entry(finalValue);
+      entry = new Entry();
+      entry->setValue(value);
     }
 
     if (index == 0) {
@@ -187,6 +178,7 @@ class DoubleLinkedList : public AbstractList<T> {
         }
         entry->setNext(current);
         entry->setPrev(current->getPrev());
+        entry->getPrev()->setNext(entry);
         current->setPrev(entry);
       } else {
         current = head;
@@ -207,20 +199,18 @@ class DoubleLinkedList : public AbstractList<T> {
    * @copydoc AbstractList::clear()
    */
   void clear() override {
-    if (this->getSize() > 0) {
+    if (this->getSize() == 0) {
+      return;
+    }
+
       Entry *current = head;
       Entry *next;
       for (int i = 0; i < this->getSize(); ++i) {
         next = current->getNext();
 
-        if (!this->isMutable()) {
-          current->freeValue();
-        }
-
         delete current;
         current = next;
       }
-    }
 
     this->resetSize();
     head = nullptr;
@@ -277,9 +267,6 @@ class DoubleLinkedList : public AbstractList<T> {
       }
     }
 
-    if (!this->isMutable()) {
-      toDelete->freeValue();
-    }
     delete toDelete;
 
     this->decreaseSize();
