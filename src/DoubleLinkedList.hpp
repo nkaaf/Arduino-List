@@ -203,14 +203,14 @@ class DoubleLinkedList : public AbstractList<T> {
       return;
     }
 
-      Entry *current = head;
-      Entry *next;
-      for (int i = 0; i < this->getSize(); ++i) {
-        next = current->getNext();
+    Entry *current = head;
+    Entry *next;
+    for (int i = 0; i < this->getSize(); ++i) {
+      next = current->getNext();
 
-        delete current;
-        current = next;
-      }
+      delete current;
+      current = next;
+    }
 
     this->resetSize();
     head = nullptr;
