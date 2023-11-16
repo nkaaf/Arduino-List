@@ -108,7 +108,7 @@ class DoubleLinkedList : public AbstractList<T> {
       }
     }
 
-    return current->getValue();
+    return current->getValue(this->isMutable());
   }
 
  public:
@@ -140,16 +140,8 @@ class DoubleLinkedList : public AbstractList<T> {
       return;
     }
 
-    Entry *entry;
-
-    if (this->isMutable()) {
-      // TODO: change for mutable
-      entry = new Entry();
-      entry->setValue(value);
-    } else {
-      entry = new Entry();
-      entry->setValue(value);
-    }
+    Entry *entry = new Entry();
+    entry->setValue(value, this->isMutable());
 
     if (index == 0) {
       if (this->getSize() == 0) {
@@ -234,7 +226,7 @@ class DoubleLinkedList : public AbstractList<T> {
         int i = this->getSize() - 1;
         while (i > index - 1) {
           current = current->getPrev();
-          i--;
+          --i;
         }
       }
     } else {

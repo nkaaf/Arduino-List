@@ -58,6 +58,8 @@ class List : public SingleLinkedList<T> {
    *
    * @param mutableList true if the list should be mutable; false otherwise
    *                    (default).
+   * @note  Mutable lists only work as expected, if the values, that are added, are
+   *        only lvalues and you can ensure, that the variables do not go out-of-scope during all operations of the list.
    */
   explicit List<T>(bool mutableList = false)
       : SingleLinkedList<T>(mutableList) {}

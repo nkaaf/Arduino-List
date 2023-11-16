@@ -82,7 +82,7 @@ class SingleLinkedList : public AbstractList<T> {
       current = current->getNext();
       i++;
     }
-    return current->getValue();
+    return current->getValue(this->isMutable());
   }
 
  public:
@@ -116,14 +116,8 @@ class SingleLinkedList : public AbstractList<T> {
 
     Entry *entry;
 
-    if (this->isMutable()) {
-      // TODO: change for mutable
-      entry = new Entry();
-      entry->setValue(value);
-    } else {
-      entry = new Entry();
-      entry->setValue(value);
-    }
+    entry = new Entry();
+    entry->setValue(value, this->isMutable());
 
     if (index == 0) {
       if (this->getSize() == 0) {
