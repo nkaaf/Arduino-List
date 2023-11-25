@@ -35,12 +35,10 @@
  */
 template<typename T>
 class SingleLinkedList : public AbstractList<T> {
- private:
   /*!
    * @brief Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-   private:
     Entry *next = nullptr;/// Pointer to the next element of the list
 
    public:

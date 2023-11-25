@@ -26,8 +26,6 @@
 #ifndef LIST_ABSTRACT_LIST_HPP
 #define LIST_ABSTRACT_LIST_HPP
 
-#include <stdlib.h>
-
 /*!
  * @brief   Abstract class from which all lists can be derived.
  *
@@ -35,7 +33,6 @@
  */
 template<typename T>
 class AbstractList {
- private:
   size_t size = 0;         /// Size of the list.
   bool mutableList = false;/// Is the list mutable or immutable.
 
@@ -49,7 +46,6 @@ class AbstractList {
    * Class representing an abstract entry in the list.
    */
   class AbstractEntry {
-   private:
     T immutableValue;         /// The raw value, assigned for immutable lists.
     T *mutableValue = nullptr;/// A pointer to the raw value, assigned for mutable lists.
 
@@ -61,12 +57,11 @@ class AbstractList {
      *
      * @return  Pointer to the value of the entry.
      */
-    T *getValue(bool m) {
+    T *getValue(const bool m) {
       if (m) {
         return mutableValue;
-      } else {
-        return &immutableValue;
       }
+      return &immutableValue;
     }
 
     /*!
@@ -75,7 +70,7 @@ class AbstractList {
      * @param val   Reference to the value.
      * @param m   Indicates, if the list is mutable or immutable.
      */
-    void setValue(T &val, bool m) {
+    void setValue(T &val, const bool m) {
       if (m) {
         mutableValue = &val;
       } else {
@@ -89,7 +84,7 @@ class AbstractList {
    *
    * @param mutableList true if the list should be mutable; false otherwise.
    */
-  explicit AbstractList<T>(bool mutableList) : mutableList(mutableList) {}
+  explicit AbstractList<T>(const bool mutableList) : mutableList(mutableList) {}
 
   /*!
    * @brief Get a pointer to the element, stored at specific index.
@@ -130,7 +125,7 @@ class AbstractList {
    * @return    true if the given index is in the range of the list; false
    *            otherwise
    */
-  bool isIndexOutOfBounds(int index) { return index < 0 || index >= getSize(); }
+  bool isIndexOutOfBounds(const int index) const { return index < 0 || index >= getSize(); }
 
  public:
   /*!
@@ -167,7 +162,7 @@ class AbstractList {
    * @copydoc AbstractList::addAtIndex()
    * @note If the list is mutable nothing happen.
    */
-  virtual void addAtIndex(int index, T &&value) {
+  virtual void addAtIndex(const int index, T &&value) {
     if (this->isMutable()) {
       return;// Mutable lists cannot save rvalues!
     }
@@ -211,7 +206,7 @@ class AbstractList {
    * @param arr Array.
    * @param arrSize Size of the array.
    */
-  void addAll(int index, T *arr, size_t arrSize) {
+  void addAll(int index, T *arr, const size_t arrSize) {
     for (size_t i = 0; i < arrSize; ++i) {
       addAtIndex(index++, arr[i]);
     }
@@ -224,7 +219,7 @@ class AbstractList {
    * @param arr Array.
    * @param arrSize  Size of array.
    */
-  void addAll(T *arr, size_t arrSize) {
+  void addAll(T *arr, const size_t arrSize) {
     for (size_t i = 0; i < arrSize; ++i) {
       add(arr[i]);
     }
@@ -275,7 +270,7 @@ class AbstractList {
    * @param index   Index of the element to get.
    * @return    Immutable object.
    */
-  T get(int index) { return *this->getPointer(index); }
+  T get(const int index) { return *this->getPointer(index); }
 
   /*!
    * @brief Get the pointer to the mutable object at a specified index.
@@ -289,7 +284,7 @@ class AbstractList {
    * @return Mutable object, or nullptr if the index is out of bounds or the
    * list is immutable.
    */
-  T *getMutableValue(int index) {
+  T *getMutableValue(const int index) {
     if (!this->isMutable()) {
       return nullptr;
     }
@@ -334,21 +329,21 @@ class AbstractList {
    *
    * @return    Size of the list.
    */
-  int getSize() { return size; }
+  int getSize() const { return size; }
 
   /*!
    * @brief Check if the list is mutable.
    *
    * @return    true if the list is mutable; false otherwise.
    */
-  bool isMutable() { return mutableList; }
+  bool isMutable() const { return mutableList; }
 
   /*!
    * @brief Check if the list is empty.
    *
    * @return    true if the list is empty; false otherwise
    */
-  bool isEmpty() { return getSize() == 0; }
+  bool isEmpty() const { return getSize() == 0; }
 
   /*!
    * @brief Compare two lists whether their attributes and entries are equal.
@@ -385,7 +380,7 @@ class AbstractList {
    * @copydoc AbstractList::get()
    * @see   get()
    */
-  T operator[](int index) { return get(index); }
+  T operator[](const int index) { return get(index); }
 
   /*!
    * @copydoc AbstractList::equals()

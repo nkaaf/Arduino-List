@@ -35,12 +35,10 @@
  */
 template<typename T>
 class DoubleLinkedList : public AbstractList<T> {
- private:
   /*!
    * @brief   Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-   private:
     Entry *prev = nullptr;/// Pointer to the previous element of the list.
     Entry *next = nullptr;/// Pointer to the next element of the list.
 
