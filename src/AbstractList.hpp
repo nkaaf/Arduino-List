@@ -165,7 +165,7 @@ class AbstractList {
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
   /*!
    * @copydoc AbstractList::addAtIndex()
-* @note If the list is mutable nothing happen.
+   * @note If the list is mutable nothing happen.
    */
   virtual void addAtIndex(int index, T &&value) {
     if (this->isMutable()) {
@@ -194,7 +194,7 @@ class AbstractList {
   /*!
    * @brief Add all entries from the given list at the end of the list.
    * @note The elements from the other list, remain untouched.
-* @note  If the other list is mutable and the values saved in the lists are primitives, nothing happens.
+   * @note  If the other list is mutable and the values saved in the lists are primitives, nothing happens.
    *
    * @param list    Other list to copy from.
    */
@@ -205,7 +205,7 @@ class AbstractList {
    *        The original entry at this index, and followings, will be placed
    *        directly after the entries of the given list.
    * @note The elements from the other list, remain untouched.
-  * @note  If this list is mutable, ensure, that the other lists do not go out-of-scope during all operations of this list. If the other list is mutable, all values added to this lists are immutable.
+   * @note  If this list is mutable, ensure, that the other lists do not go out-of-scope during all operations of this list. If the other list is mutable, all values added to this lists are immutable.
    *
    * @param index Index of this list, at which all entries should be added.
    * @param arr Array.
@@ -233,7 +233,7 @@ class AbstractList {
   /*!
    * @brief Add a new entry at the beginning of the list.
    * @note  If this list is mutable, ensure, that all variables added to the lists do not go out-of-scope during all operations of the list.
-    *
+   *
    * @param value   Value to add.
    */
   void addFirst(T &value) { addAtIndex(0, value); }
@@ -241,7 +241,7 @@ class AbstractList {
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
   /*!
    * @copydoc AbstractList::addFirst()
-* @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
+   * @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
    */
   void addFirst(T &&value) { addAtIndex(0, value); }
 #endif
@@ -249,7 +249,7 @@ class AbstractList {
   /*!
    * @brief Add a new entry at the end of the list.
    * @note  If this list is mutable, ensure, that all variables added to the lists do not go out-of-scope during all operations of the list.
-*
+   *
    * @param value   Value to add.
    */
   void addLast(T &value) { addAtIndex(getSize(), value); }
@@ -257,7 +257,7 @@ class AbstractList {
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
   /*!
    * @copydoc AbstractList::addLast()
-* @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
+   * @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
    */
   void addLast(T &&value) { addAtIndex(getSize(), value); }
 #endif
@@ -413,15 +413,15 @@ class AbstractList {
   /*!
    * @copydoc AbstractList::add()
    * @see add()
-* @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
-  */
+   * @note If the list is mutable and the values saved in the list are not primitives, nothing happen.
+   */
   void operator+(T &&value) { this->add(value); }
 #endif
 
   /*!
    * @copydoc AbstractList::addAll(AbstractList<T>&)
-* @note  If the other list is mutable and the values saved in the lists are primitives, nothing happens.
-  * @see addAll(AbstractList<T>&)
+   * @note  If the other list is mutable and the values saved in the lists are primitives, nothing happens.
+   * @see addAll(AbstractList<T>&)
    */
   void operator+(AbstractList<T> &list) { this->addAll(list); }
 };

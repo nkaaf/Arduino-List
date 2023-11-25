@@ -127,8 +127,8 @@ class DoubleLinkedList : public AbstractList<T> {
   ~DoubleLinkedList() { this->clear(); }
 
   using AbstractList<T>::addAtIndex;///'Using' the addAtIndex method, to
-                                    ///prevent name hiding of the addAtIndex
-                                    ///method from AbstractList
+                                    /// prevent name hiding of the addAtIndex
+                                    /// method from AbstractList
 
   /*!
    * @copydoc AbstractList::addAtIndex()

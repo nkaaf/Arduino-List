@@ -38,6 +38,7 @@ CompactNamespaces: false
 ContinuationIndentWidth: 4
 IndentCaseLabels: true
 IndentPPDirectives: None
+InsertNewlineAtEOF: true
 IndentWidth: 2
 KeepEmptyLinesAtTheStartOfBlocks: true
 MaxEmptyLinesToKeep: 1
@@ -45,7 +46,7 @@ NamespaceIndentation: None
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: false
 PointerAlignment: Right
-ReflowComments: false
+ReflowComments: true
 SpaceAfterCStyleCast: true
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
