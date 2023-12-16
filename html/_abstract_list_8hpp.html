@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Arduino List Library
-   &#160;<span id="projectnumber">2.1.4</span>
+   &#160;<span id="projectnumber">3.0.0</span>
    </div>
    <div id="projectbrief">The Ultimate Collection of Lists</div>
   </td>
@@ -71,9 +71,7 @@ $(function() {
 <div class="title">AbstractList.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-</div>
+
 <p><a href="_abstract_list_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -89,9 +87,6 @@ Macros</h2></td></tr>
 <tr class="memitem:ac74b4f20a5c40f8309c3d39cb350027a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_abstract_list_8hpp.html#ac74b4f20a5c40f8309c3d39cb350027a">extendedIsIndexOutOfBounds</a>(index)&#160;&#160;&#160;((index) != this-&gt;getSize() &amp;&amp; this-&gt;isIndexOutOfBounds(index))</td></tr>
 <tr class="memdesc:ac74b4f20a5c40f8309c3d39cb350027a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the list mutable or immutable.  <a href="#ac74b4f20a5c40f8309c3d39cb350027a">More...</a><br /></td></tr>
 <tr class="separator:ac74b4f20a5c40f8309c3d39cb350027a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2390992677b55d282b648571379cc16b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_abstract_list_8hpp.html#a2390992677b55d282b648571379cc16b">createFinalValue</a>(value,  finalValue,  T)</td></tr>
-<tr class="memdesc:a2390992677b55d282b648571379cc16b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a final Value from the given Value.  <a href="#a2390992677b55d282b648571379cc16b">More...</a><br /></td></tr>
-<tr class="separator:a2390992677b55d282b648571379cc16b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file is part of the <a class="el" href="class_list.html" title="A list with the most basic implementation as a single-linked list. ">List</a> library. It extends the arduino ecosystem with easy-to-use list implementations. They are specially designed and optimized for different purposes.</p>
@@ -118,42 +113,6 @@ Macros</h2></td></tr>
 
 <p>Is the list mutable or immutable. </p>
 <p>Sometimes it is allowed, that index == this-&gt;getSize() to insert it behind the last entry </p>
-
-</div>
-</div>
-<a id="a2390992677b55d282b648571379cc16b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2390992677b55d282b648571379cc16b">&#9670;&nbsp;</a></span>createFinalValue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define createFinalValue</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">value, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">finalValue, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">T&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">finalValue = (T *)malloc(<span class="keyword">sizeof</span>(T));                                         \</div><div class="line">  memcpy(finalValue, &amp;value, <span class="keyword">sizeof</span>(T));</div></div><!-- fragment -->
-<p>Create a final Value from the given Value. </p>
 
 </div>
 </div>

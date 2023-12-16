@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../class_abstract_list.html#a0b1b3ee1097cfc9c264eb492a830ac90',1,'AbstractList']]],
-  ['operator_2b',['operator+',['../class_abstract_list.html#aa07540ddf74dbf04aa7fceadd0b90cf8',1,'AbstractList::operator+(T &amp;value)'],['../class_abstract_list.html#a4a1a9045b1826ea42a08619714989a04',1,'AbstractList::operator+(T &amp;&amp;value)'],['../class_abstract_list.html#abba749d4b495b8c1da1c753bebc6812b',1,'AbstractList::operator+(AbstractList&lt; T &gt; &amp;list)']]],
-  ['operator_3d_3d',['operator==',['../class_abstract_list.html#afb86b17bf90cf6d005a0e80be352fcfd',1,'AbstractList']]],
-  ['operator_5b_5d',['operator[]',['../class_abstract_list.html#a01139ec6abc8e02f36fdb7c9d96b5484',1,'AbstractList']]]
+  ['remove',['remove',['../class_abstract_list.html#a071af49ccdd54f39ba37eeb7ecd1cb08',1,'AbstractList::remove()'],['../class_double_linked_list.html#a79f4630f082e943110b9777838698fc2',1,'DoubleLinkedList::remove()'],['../class_single_linked_list.html#af86d0e54c9fc2581e2cd196c7ade6d04',1,'SingleLinkedList::remove()']]],
+  ['removeall',['removeAll',['../class_abstract_list.html#a5bd9c7f78190cda9d47e5e2e5905af4b',1,'AbstractList']]],
+  ['removefirst',['removeFirst',['../class_abstract_list.html#aef932a451cea115323da713416eec20f',1,'AbstractList']]],
+  ['removelast',['removeLast',['../class_abstract_list.html#a4d9d9a04fd3921cb3d21d58986f2897a',1,'AbstractList']]],
+  ['resetsize',['resetSize',['../class_abstract_list.html#abdf601852ec4c3a055e900bb5526fe66',1,'AbstractList']]]
 ];

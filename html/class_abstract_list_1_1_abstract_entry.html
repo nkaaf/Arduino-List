@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Arduino List Library
-   &#160;<span id="projectnumber">2.1.4</span>
+   &#160;<span id="projectnumber">3.0.0</span>
    </div>
    <div id="projectbrief">The Ultimate Collection of Lists</div>
   </td>
@@ -75,67 +75,21 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a68236636348e12de08cc7b9251c22c78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#a68236636348e12de08cc7b9251c22c78">AbstractEntry</a> (T *value)</td></tr>
-<tr class="memdesc:a68236636348e12de08cc7b9251c22c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the value.  <a href="#a68236636348e12de08cc7b9251c22c78">More...</a><br /></td></tr>
-<tr class="separator:a68236636348e12de08cc7b9251c22c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efcdb5fccb7600165aaa64acbd3787e"><td class="memItemLeft" align="right" valign="top"><a id="a0efcdb5fccb7600165aaa64acbd3787e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#a0efcdb5fccb7600165aaa64acbd3787e">~AbstractEntry</a> ()</td></tr>
-<tr class="memdesc:a0efcdb5fccb7600165aaa64acbd3787e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of an <a class="el" href="class_abstract_list_1_1_abstract_entry.html">AbstractEntry</a> Object. <br /></td></tr>
-<tr class="separator:a0efcdb5fccb7600165aaa64acbd3787e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a834c98289332db11c7b504c0889375f4"><td class="memItemLeft" align="right" valign="top"><a id="a834c98289332db11c7b504c0889375f4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#a834c98289332db11c7b504c0889375f4">freeValue</a> ()</td></tr>
-<tr class="memdesc:a834c98289332db11c7b504c0889375f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the memory of the value to prevent memory leaks. <br /></td></tr>
-<tr class="separator:a834c98289332db11c7b504c0889375f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1092ef2782b59db8cf8a5374b5ffdfda"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#a1092ef2782b59db8cf8a5374b5ffdfda">getValue</a> ()</td></tr>
-<tr class="memdesc:a1092ef2782b59db8cf8a5374b5ffdfda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the entry.  <a href="#a1092ef2782b59db8cf8a5374b5ffdfda">More...</a><br /></td></tr>
-<tr class="separator:a1092ef2782b59db8cf8a5374b5ffdfda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac583e70b1d7c35295134363572eec7cc"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#ac583e70b1d7c35295134363572eec7cc">getValue</a> (const bool m)</td></tr>
+<tr class="memdesc:ac583e70b1d7c35295134363572eec7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the raw value, assigned for mutable lists.  <a href="#ac583e70b1d7c35295134363572eec7cc">More...</a><br /></td></tr>
+<tr class="separator:ac583e70b1d7c35295134363572eec7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88391e53d9f7751838fc2979b34ff31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_1_1_abstract_entry.html#af88391e53d9f7751838fc2979b34ff31">setValue</a> (T &amp;val, const bool m)</td></tr>
+<tr class="memdesc:af88391e53d9f7751838fc2979b34ff31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the value.  <a href="#af88391e53d9f7751838fc2979b34ff31">More...</a><br /></td></tr>
+<tr class="separator:af88391e53d9f7751838fc2979b34ff31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
 class AbstractList&lt; T &gt;::AbstractEntry</h3>
 
 <p>Class representing an abstract entry in the list. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a68236636348e12de08cc7b9251c22c78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68236636348e12de08cc7b9251c22c78">&#9670;&nbsp;</a></span>AbstractEntry()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_abstract_list.html">AbstractList</a>&lt; T &gt;::AbstractEntry::AbstractEntry </td>
-          <td>(</td>
-          <td class="paramtype">T *&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Pointer to the value. </p>
-<p>Constructor of an <a class="el" href="class_abstract_list_1_1_abstract_entry.html">AbstractEntry</a> Object.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>Value of the entry. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1092ef2782b59db8cf8a5374b5ffdfda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1092ef2782b59db8cf8a5374b5ffdfda">&#9670;&nbsp;</a></span>getValue()</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac583e70b1d7c35295134363572eec7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac583e70b1d7c35295134363572eec7cc">&#9670;&nbsp;</a></span>getValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,7 +102,8 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">T* <a class="el" href="class_abstract_list.html">AbstractList</a>&lt; T &gt;::AbstractEntry::getValue </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -159,8 +114,62 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Get the value of the entry. </p>
+<p>A pointer to the raw value, assigned for mutable lists. </p>
+<p>Get a pointer to the value (mutable or immutable).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Indicates, if the list is mutable or immutable.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the value of the entry. </dd></dl>
+
+</div>
+</div>
+<a id="af88391e53d9f7751838fc2979b34ff31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af88391e53d9f7751838fc2979b34ff31">&#9670;&nbsp;</a></span>setValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_abstract_list.html">AbstractList</a>&lt; T &gt;::AbstractEntry::setValue </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>Reference to the value. </td></tr>
+    <tr><td class="paramname">m</td><td>Indicates, if the list is mutable or immutable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
