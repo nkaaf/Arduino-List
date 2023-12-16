@@ -12,9 +12,8 @@ html
 # VSCode
 .vscode
 
-# PlatformIO for testing
+# PlatformIO
 .pio
-test
 lib
 src/main.cpp
 include

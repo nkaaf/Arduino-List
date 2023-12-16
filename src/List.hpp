@@ -22,7 +22,7 @@
  *
  * This file is part of the List library.
  *
- * Copyright (C) 2021-2022  Niklas Kaaf
+ * Copyright (C) 2021-2023  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -50,16 +50,19 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class List : public SingleLinkedList<T> {
-public:
+template<typename T>
+class List : public SingleLinkedList<T> {
+ public:
   /*!
    * @brief Constructor of a List Object.
    *
    * @param mutableList true if the list should be mutable; false otherwise
    *                    (default).
+   * @note  Mutable lists only work as expected, if the values, that are added, are
+   *        only lvalues and you can ensure, that the variables do not go out-of-scope during all operations of the list.
    */
   explicit List<T>(bool mutableList = false)
       : SingleLinkedList<T>(mutableList) {}
 };
 
-#endif // LIST_HPP
+#endif// LIST_HPP

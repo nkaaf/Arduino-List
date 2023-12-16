@@ -5,7 +5,7 @@
  * easy-to-use list implementations. They are specially designed and optimized
  * for different purposes.
  *
- * Copyright (C) 2021-2022  Niklas Kaaf
+ * Copyright (C) 2021-2023  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -33,23 +33,15 @@
  *
  * @tparam T    Data Type of entries, that should be stored in the list.
  */
-template <typename T> class SingleLinkedList : public AbstractList<T> {
-private:
+template<typename T>
+class SingleLinkedList : public AbstractList<T> {
   /*!
    * @brief Class representing one entry of the list.
    */
   class Entry : public AbstractList<T>::AbstractEntry {
-  private:
-    Entry *next = nullptr; /// Pointer to the next element of the list
+    Entry *next = nullptr;/// Pointer to the next element of the list
 
-  public:
-    /*!
-     * @brief   Constructor of an Entry Object.
-     *
-     * @param value Value of the entry.
-     */
-    explicit Entry(T *value) : AbstractList<T>::AbstractEntry(value) {}
-
+   public:
     /*!
      * @brief   Destructor of an Entry Object.
      */
@@ -70,14 +62,14 @@ private:
     void setNext(Entry *nextEntry) { next = nextEntry; }
   };
 
-  Entry *head = nullptr; /// The first entry of the list.
-  Entry *tail = nullptr; /// The last entry of the list.
+  Entry *head = nullptr;/// The first entry of the list.
+  Entry *tail = nullptr;/// The last entry of the list.
 
-protected:
+ protected:
   /*!
-   * @copydoc AbstractList::get()
+   * @copydoc AbstractList::getPointer()
    */
-  T *get(int index) override {
+  T *getPointer(int index) override {
     if (this->isIndexOutOfBounds(index)) {
       return nullptr;
     }
@@ -88,18 +80,10 @@ protected:
       current = current->getNext();
       i++;
     }
-
-    if (this->isMutable()) {
-      return (T *)current->getValue();
-    } else {
-      T *val = current->getValue();
-      T *finalValue;
-      createFinalValue(*val, finalValue, T);
-      return finalValue;
-    }
+    return current->getValue(this->isMutable());
   }
 
-public:
+ public:
   /*!
    * @brief Constructor of a SingleLinkedList Object.
    *
@@ -114,6 +98,10 @@ public:
    */
   ~SingleLinkedList() { this->clear(); }
 
+  using AbstractList<T>::addAtIndex;///'Using' the addAtIndex method, to
+                                    /// prevent name hiding of the addAtIndex
+                                    /// method from AbstractList
+
   /*!
    * @copydoc AbstractList::addAtIndex()
    */
@@ -126,13 +114,8 @@ public:
 
     Entry *entry;
 
-    if (this->isMutable()) {
-      entry = new Entry(&value);
-    } else {
-      T *finalValue;
-      createFinalValue(value, finalValue, T);
-      entry = new Entry(finalValue);
-    }
+    entry = new Entry();
+    entry->setValue(value, this->isMutable());
 
     if (index == 0) {
       if (this->getSize() == 0) {
@@ -164,24 +147,22 @@ public:
    * @copydoc AbstractList::clear()
    */
   void clear() override {
-    if (this->getSize() > 0) {
-      Entry *current = head;
-      Entry *next;
-      for (int i = 0; i < this->getSize(); ++i) {
-        next = current->getNext();
-
-        if (!this->isMutable()) {
-          current->freeValue();
-        }
-
-        delete current;
-        current = next;
-      }
-
-      this->resetSize();
-      head = nullptr;
-      tail = nullptr;
+    if (this->getSize() == 0) {
+      return;
     }
+
+    Entry *current = head;
+    Entry *next;
+    for (int i = 0; i < this->getSize(); ++i) {
+      next = current->getNext();
+
+      delete current;
+      current = next;
+    }
+
+    this->resetSize();
+    head = nullptr;
+    tail = nullptr;
   }
 
   /*!
@@ -216,9 +197,6 @@ public:
       current->setNext(current->getNext()->getNext());
     }
 
-    if (!this->isMutable()) {
-      toDelete->freeValue();
-    }
     delete toDelete;
 
     this->decreaseSize();
@@ -230,4 +208,4 @@ public:
   }
 };
 
-#endif // LIST_SINGLE_LINKED_LIST_HPP
+#endif// LIST_SINGLE_LINKED_LIST_HPP
