@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/schema/library.json",
   "name": "List",
   "version": "3.0.0",
   "description": "The Ultimate Collection of Lists. This library extends the Arduino ecosystem with the functionality of several easy-to-use lists for numerous purposes.",
@@ -49,9 +50,7 @@
   "export": {
     "include": [
       "examples/*",
-      "src/*",
-      "library.json",
-      "LICENSE"
+      "src/*"
     ]
   }
 }
