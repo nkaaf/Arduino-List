@@ -1,16 +1,15 @@
-# CLion
-.idea
+# Jetbrains IDEs
+**/.idea/**
 
 # CMake
-CMakeLists.txt
-cmake-build-*
+**/cmake-build-*
 
 # gh_pages files
 doxygen_sqlite3.db
 html
 
 # VSCode
-.vscode
+**/.vscode/settings.json
 
 # PlatformIO
 .pio
@@ -19,3 +18,6 @@ src/main.cpp
 include
 platformio.ini
 CMakeListsPrivate.txt
+
+# macOS
+**/.DS_Store
