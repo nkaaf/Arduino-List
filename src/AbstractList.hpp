@@ -5,7 +5,7 @@
  * easy-to-use list implementations. They are specially designed and optimized
  * for different purposes.
  *
- * Copyright (C) 2021-2023  Niklas Kaaf
+ * Copyright (C) 2021-2024  Niklas Kaaf
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,8 @@
 
 #ifndef LIST_ABSTRACT_LIST_HPP
 #define LIST_ABSTRACT_LIST_HPP
+
+#include <stddef.h>
 
 /*!
  * @brief   Abstract class from which all lists can be derived.
